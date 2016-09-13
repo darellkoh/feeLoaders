@@ -16,7 +16,7 @@ module.exports = db.define('product', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    in_stock: {
+    inStock: {
         type: Sequelize.INTEGER,
         allowNull: false,
         validate: {
