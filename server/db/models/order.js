@@ -5,14 +5,16 @@ var db = require('../_db');
 
 module.exports = db.define('order', {
 
-  //associated with order-line-item table
-  //ASSOCIATIONS: user_id, PRIMARY KEY
+  //ASSOCIATIONS: user_id
+  
   date: {
-    type: Sequelize.DATE
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW
   },
 
   isOrderComplete: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
   }
 
 })
