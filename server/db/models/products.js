@@ -1,5 +1,4 @@
 'use strict';
-var _ = require('lodash');
 var Sequelize = require('sequelize');
 
 var db = require('../_db');
@@ -17,9 +16,12 @@ module.exports = db.define('product', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    quantity: {
+    in_stock: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          min: 0
+        }
     },
     tags: {
         type: Sequelize.ARRAY(Sequelize.STRING)
