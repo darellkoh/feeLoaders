@@ -9,6 +9,10 @@ module.exports = db.define('order', {
   //ASSOCIATIONS: user_id, PRIMARY KEY
   date: {
     type: Sequelize.DATE
+  },
+
+  isOrderComplete: {
+    type: Sequelize.BOOLEAN
   }
 
 })
