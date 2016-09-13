@@ -5,35 +5,27 @@ var db = require('../_db');
 
 module.exports = db.define('orderItem', {
 
- //order_id is our primary key
- //
+ // Associations
+ // user_id, product_id, order_id (meaning the full order here)
 
-  quantity: {
-    type: Sequelize.INTEGER
+  qtyPurchased: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+     min: 1
+    }
   },
 
-  product_cost: {
-    type: Sequelize.INTEGER
+  productCost: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
   }
-
-
-//may be set up by associations
-
-  // product_id: {
-  //   type: Sequelize.INTEGER
-  // },
-
-  // user_id: {
-  //   type: Sequelize.INTEGER
-  // }
 
 });
 
-
-
-
-
-
+// TODOS
+// Add a hook in sometime down the road to make sure we have qtyPurchased in stock
+// and if so subtract from our qty in stock in the product model
 
 /* coming back to modelOptions later */
 
