@@ -24,7 +24,7 @@ module.exports = db.define('product', {
         }
     },
     tags: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.ARRAY(Sequelize.STRING), /* this causes a warning in the linter */
     },
     category: {
         type: Sequelize.STRING,

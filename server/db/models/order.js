@@ -1,12 +1,12 @@
 //order as a group
 
-var Sequelize = require('sequelize')
+var Sequelize = require('sequelize');
 var db = require('../_db');
+
+//ASSOCIATIONS: user_id
 
 module.exports = db.define('order', {
 
-  //ASSOCIATIONS: user_id
-  
   date: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW
