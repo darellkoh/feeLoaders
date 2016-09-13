@@ -12,8 +12,14 @@ var Order = require('../../../db/models/order.js');
 orders.get( '/', function(req, res, next){
 
 	Order.findAll()
-		.then(function(orders){
-			res.status(200).send(orders);
+		.then(function(allOrders){
+
+			if ( !allOrders ){
+				res.statusCode(404);
+			}
+			else {
+				res.status(200).send(allOrders);
+			}
 		})
 		.catch(next);
 
@@ -24,7 +30,13 @@ orders.get( '/:id', function( req, res, next){
 
 	Order.findById(req.params.id)
 		.then( function(specificOrder){
-			res.status(200).send(specificOrder);
+
+			if ( !specificOrder ){
+				res.statusCode(404);
+			}
+			else {
+				res.status(200).send(specificOrder);
+			}
 		})
 		.catch(next);
 
