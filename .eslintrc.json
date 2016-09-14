@@ -11,7 +11,8 @@
   },
   "rules": {
     "global-require": 0, // 0 = off, 1 = warn (yellow), 2 = error (red)
-    "camelcase": 0
+    "camelcase": 0,
+    "new-cap": 0 // This gets rid of the annoying warnings about functions starting with capital letters
     // add more rules here to override the fullstack config
   }
 }
