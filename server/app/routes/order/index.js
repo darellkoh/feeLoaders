@@ -15,7 +15,7 @@ orders.get( '/', function(req, res, next){
 		.then(function(allOrders){
 
 			if ( !allOrders ){
-				res.statusCode(404);
+				res.sendStatus(404);
 			}
 			else {
 				res.status(200).send(allOrders);
@@ -32,7 +32,7 @@ orders.get( '/:id', function( req, res, next){
 		.then( function(specificOrder){
 
 			if ( !specificOrder ){
-				res.statusCode(404);
+				res.sendStatus(404);
 			}
 			else {
 				res.status(200).send(specificOrder);
