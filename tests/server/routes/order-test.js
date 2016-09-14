@@ -51,6 +51,20 @@ describe('Order Route', function () {
           });
       });
 
+      it('should get a 200 response and find an order with an id of 1', function (done) {
+        orderAgent.get('/api/orders/1')
+          .expect(200)
+          .end(function (err, response) {
+            if (err) return done(err);
+            expect(response.body).to.be.an('object');
+            expect(response.body.id).to.eql(orderInfo.id);
+            done();
+          })
+      })
+
+      //MAKE A TEST TO CHECK FOR ABILITY TO POST
+      //MAKE A TEST TO MAKE SURE ONLY AUTHORIZED MEMBER CAN CALL ROUTE
+
     });
 });
 
