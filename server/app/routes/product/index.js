@@ -1,5 +1,5 @@
 var router = require('express').Router(); // eslint-disable-line new-cap
-var db = require('../../db/index.js');
+var db = require('../../../db/index.js');
 var Product = db.model('product');
 module.exports = router;
 

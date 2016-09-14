@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../../db/models/user');
+var User = require('../../../db/models/user');
 
 module.exports = router;
 
-router.get('/', function(req,res,next) {
+router.get('/', function( req, res, next) {
   User.findAll({})
   .then(function(users){
     res.send(users);
@@ -12,7 +12,7 @@ router.get('/', function(req,res,next) {
   .catch(next);
 })
 
-router.post('/', function(req,res,next) {
+router.post('/', function( req, res, next) {
   User.create(req.body)
   .then(function(user){
     res.status(201)
@@ -21,11 +21,11 @@ router.post('/', function(req,res,next) {
   .catch(next);
 })
 
-router.param('userId', function(req,res,next,id) {
+router.param('userId', function( req, res, next, id) {
   User.findById(id)
   .then(function(user){
     if (!user) {
-      var err = Error("User not found");
+      var err = Error('User not found');
       err.status = 404;
       throw err
     }
@@ -36,7 +36,7 @@ router.param('userId', function(req,res,next,id) {
   .catch(next);
 })
 
-router.get('/:userId', function (req,res) {
+router.get('/:userId', function ( req, res) {
     res.send(req.user);
 })
 

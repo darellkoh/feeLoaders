@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 module.exports = router;
 
-var Review = require('../../db/models/reviews');
+var Review = require('../../../db/models/reviews');
 
 
 // GET all reviews
@@ -28,7 +28,7 @@ router.post('/', function(req, res, next) {
 
 // Review Param
 router.param('reviewId', function(req, res, next, id) {
-    Review.findById(req.params.reviewId)
+    Review.findById(id)
         .then(function(review) {
             if (!review) {
                 var err = Error('Review not found.');
@@ -67,7 +67,7 @@ router.put('/:reviewId', function(req, res, next) {
 // DELETE a review
 router.delete('/:reviewId', function(req, res, next) {
     req.review.destroy()
-        .then(function(destroyedReview) {
+        .then(function() {
             res.status(204).end();
         })
         .catch(next);
