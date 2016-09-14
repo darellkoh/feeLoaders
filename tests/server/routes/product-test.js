@@ -56,6 +56,4 @@ describe('Product Route', function () {
       });
 
     });
-
-
 })
