@@ -8,7 +8,7 @@ var Review = require('../../../db/models/reviews');
 
 // GET all reviews
 router.get('/', function(req, res, next) {
-    Review.findAll()
+    Review.findAll({})
         .then(function(reviews) {
             res.send(reviews)
         })
@@ -35,11 +35,6 @@ router.param('reviewId', function(req, res, next, id) {
                 err.status = 404;
                 throw (err);
             }
-
-            if (!req.params.id) {
-                res.sendStatus(500);
-            }
-
             req.review = review;
             next();
             return null;
