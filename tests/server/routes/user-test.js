@@ -8,7 +8,7 @@ var supertest = require('supertest');
 
 describe('Product Route', function () {
 
-  var app, Product;
+  var app, User;
 
     beforeEach('Sync DB', function () {
         return db.sync({ force: true });
@@ -16,26 +16,22 @@ describe('Product Route', function () {
 
     beforeEach('Create app', function () {
         app = require('../../../server/app')(db);
-        Product = db.model('product');
+        User = db.model('user');
     });
 
-    var productInfo = {
+    var userInfo = {
       id: 1,
-      name: 'ToothBrush',
-      description: 'A really nice toothbrush.',
-      price: 500,
-      inStock: 5,
-      tags: ['clean','teeth','hygiene'],
-      category: 'toiletries'
+      email: 'LebronJames@StephCurry.com',
+      password: 'MOM'
     }
 
     beforeEach('Create a Product', function (done) {
-      return Product.create(productInfo).then(function (product) {
+      return User.create(userInfo).then(function (user) {
                 done();
             }).catch(done);
     });
 
-    describe('Product route responds with created product.', function () {
+    describe('User route responds with created user.', function () {
 
       var orderAgent;
 
@@ -43,26 +39,31 @@ describe('Product Route', function () {
         orderAgent = supertest.agent(app);
       });
 
-      it('should get a 200 response from the products route and the first product should have an id of 1', function (done) {
-        orderAgent.get('/api/products/')
+      it('should get a 200 response from the users route and the first user should have an id of 1', function (done) {
+        orderAgent.get('/api/users/')
           .expect(200)
           .end(function (err, response) {
             if (err) return done(err);
             expect(response.body).to.be.an('array');
-            expect(response.body[0].id).to.eql(productInfo.id);
+            expect(response.body[0].id).to.eql(userInfo.id);
+            expect(response.body[0].email).to.eql(userInfo.email);
+            // Shouldn't check password here because it's encrypted on the response
+            // Security Schmamertiy 
             expect(response.body.length).to.eql(1);
             done();
           });
       });
 
-      it('should get a 200 response from the products/1 route and the product should have an id of 1', function (done) {
-        orderAgent.get('/api/products/1')
+      it('should get a 200 response from the users/1 route and the user should have an id of 1', function (done) {
+        orderAgent.get('/api/users/1')
           .expect(200)
           .end(function (err, response) {
             if (err) return done(err);
             expect(response.body).to.be.an('object');
-            expect(response.body.id).to.eql(productInfo.id);
-            expect(response.body.name).to.eql(productInfo.name);
+            expect(response.body.id).to.eql(userInfo.id);
+            expect(response.body.email).to.eql(userInfo.email);
+            // Shouldn't check password here because it's encrypted on the response
+            // Security Schmamertiy 
             done();
           });
       });
