@@ -3,7 +3,7 @@ var db = require('../../../db/index.js');
 var Product = db.model('product');
 module.exports = router;
 
-router.get('/', function(res, req, next){
+router.get('/', function( req, res, next){
 
   Product.findAll({})
   .then(function(products){
@@ -13,7 +13,7 @@ router.get('/', function(res, req, next){
 
 })
 
-router.get('/:productId', function(res, req, next){
+router.get('/:productId', function( req, res, next){
   var productId = req.params.productId;
   Product.findById(productId)
   .then(function(product){
