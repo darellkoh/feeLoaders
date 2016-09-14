@@ -11,12 +11,13 @@ module.exports = function (app) {
     var publicPath = path.join(root, './public');
     var browserPath = path.join(root, './browser');
     var imgPath = path.join(root, './img');
+    var fontPath = path.join(root, './fonts');
 
     app.use(favicon(app.getValue('faviconPath')));
     app.use(express.static(npmPath));
     app.use(express.static(publicPath));
     app.use(express.static(browserPath));
     app.use(express.static(imgPath));
-
+    app.use('/fonts', express.static(fontPath));
 };
 
