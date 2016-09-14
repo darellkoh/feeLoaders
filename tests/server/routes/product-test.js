@@ -55,6 +55,18 @@ describe('Product Route', function () {
           });
       });
 
+      it('should get a 200 response from the products/1 route and the product should have an id of 1', function (done) {
+        orderAgent.get('/api/products/1')
+          .expect(200)
+          .end(function (err, response) {
+            if (err) return done(err);
+            expect(response.body).to.be.an('object');
+            expect(response.body.id).to.eql(productInfo.id);
+            expect(response.body.name).to.eql(productInfo.name);
+            done();
+          });
+      });
+
     });
 
 
