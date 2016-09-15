@@ -1,0 +1,38 @@
+
+<div>
+<!-- Page Title -->
+    <section class="container padding-top-3x">
+      <h1 class="space-top-half tablet-center">Free $hit</h1>
+    </section><!-- .container-fluid -->
+
+    <!-- Filters Bar -->
+    <div class="row">
+    <section class="container padding-top pull-left">
+      <div class="filters-bar space-top-half">
+        <div class="column">
+          <!-- Nav Filters -->
+          <ul class="nav-filters">
+          	<li ng-class=isActive('') style='cursor:pointer'><a ng-click=setSelected('')>All</a> <sup>{{products.length}}</sup></li>
+          	<li ng-repeat='category in categories' ng-class=isActive(category) style='cursor:pointer'><a ng-click=setSelected(category)>{{ category | filter: upperCase }} </a> <sup>{{accumObj[category]}}</sup></li>
+
+
+            <!-- <li ng-class=isActive('') style='cursor:pointer'><a ng-click=setSelected('')>All</a> <sup>{{products.length}}</sup></li>
+            <li ng-class=isActive('google') style='cursor:pointer' ><a ng-click=setSelected('google')>Google</a> <sup>{{accumObj["google"]}}</sup></li>
+            <li ng-class=isActive('images') style='cursor:pointer'><a  ng-click=setSelected('images')>Images</a> <sup>{{accumObj["images"]}}</sup></li>
+            <li ng-class=isActive('memes') style='cursor:pointer'><a ng-click=setSelected('memes')>Memes</a> <sup>{{accumObj["memes"]}}</sup></li>
+            <li ng-class=isActive('NYC-Only') style='cursor:pointer'><a ng-click=setSelected('NYC-Only')>New York Only</a> <sup>{{accumObj["NYC-Only"]}}</sup></li> -->
+          </ul><!-- .nav-filters -->
+        </div><!-- .column -->
+       </div>
+    </section>
+     </div>   
+   
+<!-- Shop Catalog -->
+    <section class="container padding-bottom-3x">
+      <div class="row">
+        <!-- Item -->
+        <!-- PUT PRODUCTS HERE  -->
+        <product ng-repeat="product in products | filter: selected" product='product'></product>
+      </div>
+     </section><!-- .container -->
+</div>
