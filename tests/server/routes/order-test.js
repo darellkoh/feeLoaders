@@ -62,6 +62,8 @@ describe('Order Route', function () {
           })
       })
 
+      // POST, PUT, DELETE
+
       //MAKE A TEST TO CHECK FOR ABILITY TO POST
       //MAKE A TEST TO MAKE SURE ONLY AUTHORIZED MEMBER CAN CALL ROUTE
 
