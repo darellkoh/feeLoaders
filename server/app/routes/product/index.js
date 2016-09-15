@@ -3,8 +3,9 @@ var db = require('../../../db/index.js');
 var Product = db.model('product');
 module.exports = router;
 
-router.get('/', function( req, res, next){
 
+// GET all
+router.get('/', function( req, res, next){
   Product.findAll({})
   .then(function(products){
     res.status(200).send(products);
@@ -13,14 +14,52 @@ router.get('/', function( req, res, next){
 
 })
 
-router.get('/:productId', function( req, res, next){
-  var productId = req.params.productId;
-  Product.findById(productId)
-  .then(function(product){
-    // if(!product){
-    //   res.sendStatus(404);
-    // }
-    res.status(200).send(product);
+// POST one
+router.post('/', function(req, res, next){
+  Product.create(req.body)
+  .then(function(createdProduct){
+    res.status(201).send(createdProduct);
   })
-  .catch(next)
-})
+  .catch(next);
+});
+
+
+// Product Params
+router.param('productId', function(req, res, next, id){
+  Product.findById(id)
+  .then(function(product){
+    if(!product){
+      var err = Error('Product not found.');
+      err.status = 404;
+      throw err;
+    }
+    req.product = product;
+    next();
+    return null;
+  })
+  .catch(next);
+});
+
+
+//GET one
+router.get('/:productId', function( req, res, next){
+  res.send(req.product);
+});
+
+// PUT - update one
+router.put('/:productId', function(req, res, next){
+  req.product.update(req.body)
+  .then(function(updatedProduct){
+    res.status(200).send(updatedProduct);
+  })
+  .catch(next);
+});
+
+// DELETE a product
+router.delete('/:productId', function(req, res, next){
+  req.product.destroy()
+  .then(function(){
+    res.status(204).end();
+  })
+  .catch(next);
+});
