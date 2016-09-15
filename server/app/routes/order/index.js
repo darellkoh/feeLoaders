@@ -134,8 +134,13 @@ orders.put('/:orderId', function(req, res, next) {
 });
 
 //DELETE
-orders.delete('/:orderId', function(req, res, next) {
-    req.order.destroy()
+orders.delete('/:orderId/orderItems/:orderItemsId', function(req, res, next) {
+  var orderItem = req.params.orderItemsId;
+    OrderItem.destroy({
+      where: {
+        id: orderItem
+      }
+      })
         .then(function() {
             res.sendStatus(204);
         })
@@ -143,41 +148,28 @@ orders.delete('/:orderId', function(req, res, next) {
 });
 
 
-////////////////////////////////////////////////////////
-//  Route: api/orders/:orderId/orderItems/:orderItemId
-///////////////////////////////////////////////////////
-
-// // POST one OrderItem
-// orders.post('/:orderId/orderItems', function(req, res, next){
-//   req.order.findOrCreate({
-//     where: {
-//       id: req.order.id
-//     },
-//     include: [Product]
-//   })
-// .then(function(result){
-//   console.log('resultttttttttyooo:');
-//   var foundOrderItem = result[0];
-//   res.status(201).send(foundOrderItem);
-// })
-// .catch(next);
-// });
+//PUT Updates one order item
+orders.put('/:orderId/orderItems/:orderItemsId', function(req, res, next){
+  var orderItem = req.params.orderItemsId;
+  OrderItem.findById(orderItem)
+  .then(function(item){
+   return item.update(req.body)
+  })
+  .then(function(updatedItem){
+    res.status(200).send(updatedItem);
+  })
+  .catch(next);
+})
 
 
-// // GET all OrderItems
-// orders.get('/:orderId/orderItems', function(req, res, next){
-//   req.order.findAll({})
-//   .then(function(foundOrderItems){
-//     res.status(200).send(foundOrderItems);
-//   })
-//   .catch(next);
-// });
 
+//GET one order item
 
-// OrderItem Param
-
-// GET one OrderItem
-
-// PUT - update one OrderItem
-
-// DElETE one OrderItem
+orders.get('/:orderId/orderItems/:orderItemsId', function(req, res, next){
+  var orderItem = req.params.orderItemsId;
+  OrderItem.findById(orderItem)
+  .then(function(item){
+      res.send(item);
+   })
+  .catch(next);
+})
