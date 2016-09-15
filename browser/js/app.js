@@ -1,6 +1,12 @@
 'use strict';
 window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate']);
 
+app.filter( 'priceFilter', function(){
+    return function(amount){
+        return '$' + (amount/100).toFixed(2);
+    }
+})
+
 app.config(function ($urlRouterProvider, $locationProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);

@@ -3,8 +3,8 @@ app.config(function($stateProvider){
 		url: '/products',
 		// Stubbing this in for now
 		// Will be providing an html file later
-		template: `<h1> Welcome to products! </h1>
-					{{ products }}`,
+		params: { selectedString: '' },
+		templateUrl: '/js/products/products.html',
 		controller: 'ProductsCtrl',
 		resolve: {
 			products: function(ProductsFactory){
@@ -19,8 +19,8 @@ app.config(function($stateProvider){
 		url: '/products/:id',
 		// Stubbing this in for now
 		// Will be providing an html file later
-		template: ` <h1> Welcome to individual product page </h1>
-					{{ product }}`,
+		// template: '<h1> Welcome to individual product page </h1>',
+		templateUrl: '/js/products/product.html',
 		controller: 'singleProductCtrl',
 		resolve: {
 			product: function($stateParams, ProductsFactory){
