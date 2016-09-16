@@ -16,8 +16,10 @@ orders.get('/', function(req, res, next) {
         .then(function(allOrders) {
 
             if (!allOrders) {
+                // JOE: Using next with a custom error might be better.
                 res.sendStatus(404);
             } else {
+                // JOE: Status 200 is redundant.
                 res.status(200).send(allOrders);
             }
         })
@@ -35,20 +37,48 @@ orders.post('/', function(req, res, next) {
 
 //Order Params
 orders.param('orderId', function(req, res, next, id) {
+
+    Order.findAll()
+
+    // SELECT * FROM orders;
+
+
+    Order.findAll({
+        include: [
+            { model: Product }
+        ]
+    });
+
+    // SELECT * FROM orders LEFT JOIN products on order.productId = product.id;
+
+    Order.findById(2)
+        .then(function (order) {
+            return order.getProducts();
+        });
+
+
     Order.findById(id, {
+            // JOE: Gold star nested eager loading.
             include: [{
                 model: OrderItem,
                 include: [Product]
             }]
         })
+
+        // SELECT * FROM orders
+        //  LEFT JOIN order_items ON order.id === order_item.orderId
+        //  LEFT JOIN products ON order_item.productId === product.id
+
         .then(function(order) {
             if (!order) {
                 var err = new Error('Order does not exist.');
                 err.status = 404;
+                // JOE: Why throw instead of calling next?
                 throw err;
             }
             req.order = order;
             next();
+            // JOE: Why does this return exist?
             return null;
         })
         .catch(next);
@@ -56,6 +86,7 @@ orders.param('orderId', function(req, res, next, id) {
 
 // ASk KATE/JOE/GEOFF
 
+// JOE: Ask away.
 // orders.param('orderId', function(req, res, next, id) {
 //     OrderItem.findAll({
 //       where: {
@@ -94,21 +125,35 @@ orders.post('/:orderId/orderItems', function(req, res, next) {
     // .catch(next);
 
 
-    OrderItem.create(req.body)
+    OrderItem.create({
+        qtyPurchased: req.body.qtyPurchased,
+        orderId: req.order.id,
+        productId: req.body.productId
+    })
         .then(function(orderItem) {
-            orderItem.setOrder(req.order.id);
-            orderItem.setProduct(req.body.productId);
-            res.status(201).send(orderItem);
+            // JOE: Asynchronous associations
+            return Promise.all([
+                orderItem.setOrder(req.order.id),
+                orderItem.setProduct(req.body.productId)
+            ]).then(function () {
+                res.status(201).send(orderItem);
+            })
+
+            // UPDATE order_items VALUES (orderId=2) WHERE order_item.id = 10;
+        })
+        .then(function () {
+
         })
         .catch(next);
 });
 
 
-// GET all OrderItems
+// GET all orderItems
+// JOE: Does this route serve a real purpose considering your req.order has products attached?
 orders.get('/:orderId/orderItems', function(req, res, next) {
     OrderItem.findOne({
             where: {
-                id: req.params.orderId
+                orderId: req.params.orderId
             },
             include: [Product, Order]
         })
@@ -136,6 +181,7 @@ orders.put('/:orderId', function(req, res, next) {
 //DELETE
 orders.delete('/:orderId/orderItems/:orderItemsId', function(req, res, next) {
   var orderItem = req.params.orderItemsId;
+    // JOE: Be very strict about formatting.
     OrderItem.destroy({
       where: {
         id: orderItem

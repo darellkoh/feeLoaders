@@ -31,3 +31,6 @@ Product.hasMany( OrderItem );
 Review.belongsTo( User );
 Review.belongsTo( Product );
 
+
+Tag.belongsToMany(Product, { through: ProductTags });
+

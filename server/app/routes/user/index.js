@@ -5,7 +5,13 @@ var User = require('../../../db/models/user');
 module.exports = router;
 
 // Get all
-router.get('/', function(req, res, next) {
+// JOE: Security concern.
+var loggedInIsAdmin = function (req, res, next) {
+    if (req.user && req.user.isAdmin) return next();
+    next(new Error('NOT ALLOWED'));
+};
+
+router.get('/', loggedInIsAdmin, function (req, res, next) {
     User.findAll({})
         .then(function(users) {
             res.send(users);
@@ -14,6 +20,7 @@ router.get('/', function(req, res, next) {
 });
 
 // POST one
+// JOE: isAdmin users.
 router.post('/', function(req, res, next) {
     User.create(req.body)
         .then(function(user) {

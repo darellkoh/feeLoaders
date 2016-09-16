@@ -12,6 +12,7 @@ module.exports = db.define('order', {
     defaultValue: Sequelize.NOW
   },
 
+  // JOE: Strange column name.
   isOrderComplete: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,

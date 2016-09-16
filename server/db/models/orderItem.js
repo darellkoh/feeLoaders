@@ -16,6 +16,7 @@ module.exports = db.define('orderItem', {
     }
   },
 
+    // JOE: Maybe a FLOAT data type.
   productCost: {
     type: Sequelize.INTEGER,
     allowNull: false,

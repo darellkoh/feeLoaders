@@ -16,6 +16,7 @@ module.exports = db.define('product', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    // JOE: column name makes me think BOOLEAN
     inStock: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -23,11 +24,13 @@ module.exports = db.define('product', {
           min: 0
         }
     },
+    // JOE: Tag as its own model with belongsToMany
     tags: {
-        type: Sequelize.ARRAY(Sequelize.STRING), /* this causes a warning in the linter */
+        type: Sequelize.ARRAY(Sequelize.STRING) /* eslint-disable-line new-cap */
     },
+    // JOE: Category as its own model with belongsToMany
     category: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM('Google', 'Only In New York'),
         allowNull: false
     },
     photo: {

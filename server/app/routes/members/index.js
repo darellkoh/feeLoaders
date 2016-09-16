@@ -4,10 +4,10 @@ module.exports = router;
 var _ = require('lodash');
 
 var ensureAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) {
+    if (req.user !== null && req.user.isAdmin === true) {
         next();
     } else {
-        res.status(401).end();
+        res.sendStatus(401);
     }
 };
 

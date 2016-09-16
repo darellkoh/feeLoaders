@@ -69,6 +69,7 @@ var seedProducts = function () {
         }
     ];
 
+    // JOE: Promise.map instead of Array.map+Promise.all
     var creatingProducts = products.map(function (projectObj) {
         return Product.create(projectObj);
     });
