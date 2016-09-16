@@ -24,8 +24,6 @@ app.controller('ProductsCtrl', function($scope, products, $stateParams){
 		return prev;
 	}, getCategories());
 
-	console.log("hello!", $scope.accumObj);
-
 	$scope.selected = $stateParams.selectedString; // Initialize to all on initial page load
 
 	$scope.setSelected = function(string){
@@ -41,16 +39,17 @@ app.controller('ProductsCtrl', function($scope, products, $stateParams){
 });
 
 app.controller('singleProductCtrl', function($scope, product){
+  
   $scope.product = product;
+  $scope.products = products;
+  
   var products = [];
   for(var i = 0; i < 4; i++){
     products.push(product)
   }
-  $scope.products = products;
-
-  console.log("products", $scope.products)
-
+  
   $scope.leaveReview = {};
+
   $scope.submitReview = function(){
     console.log($scope.leaveReview)
   }
