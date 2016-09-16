@@ -39,14 +39,17 @@ app.controller('ProductsCtrl', function($scope, products, $stateParams){
 });
 
 app.controller('singleProductCtrl', function($scope, product){
+  
   $scope.product = product;
+  $scope.products = products;
+  
   var products = [];
   for(var i = 0; i < 4; i++){
     products.push(product)
   }
-  $scope.products = products;
-
+  
   $scope.leaveReview = {};
+
   $scope.submitReview = function(){
     console.log($scope.leaveReview)
   }
