@@ -2,11 +2,11 @@ app.directive("reviewLeave", function(){
   return {
     restrict: "E",
     scope: {
-      leaveReview: '=',
+
       submitReview: "&"
     },
     template: `
-    <form name="milad" class="row padding-top">
+    <form name="review" class="row padding-top">
       <div class="col-sm-4">
         <div class="form-element">
           <input type="text" ng-model="leaveReview.name" class="form-control" placeholder="Name*" required>
