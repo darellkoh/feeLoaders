@@ -77,37 +77,13 @@ describe('Product Route', function() {
                 });
         });
 
-        // POST
-        // it('should successfully create a new product and get a 201 status response', function(done) {
-        //     productAgent.post('/api/products/')
-        //         .expect(200)
-        //         .end(function(err, response) {
-        //             if (err) return done(err);
-        //             .expect(200)
-        //             expect(response.body).to.be.an('array');
-        //             expect(response.body[0].id).to.eql(productInfo.id);
-        //             expect(response.body.length).to.eql(1);
-        //             done();
-        //             // Product.findById(response.body.id)
-        //             //     .then(function(foundProduct) {
-        //             //         expect(foundProduct).to.not.be.null;
-        //             //         expect(response.body).to.eql(foundProduct);
-        //             //         done();
-        //                 // })
-        //                 //.catch(done);
-        //             done();
-        //         });
-        // });
 
-
-        it('should get a 201 response from the products route and the first product should have an id of 1', function(done) {
+        it('should successfully create a new product and get a 201 status response', function(done) {
             productAgent.post('/api/products/')
                 .send(productInfo2)
                 .expect(201)
                 .end(function(err, response) {
-                    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
                     if (err) return done(err);
-
                     expect(response.body).to.be.an('object');
                     expect(response.body.id).to.eql(productInfo2.id);
                     expect(response.body.description).to.eql(productInfo2.description);
