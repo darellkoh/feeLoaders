@@ -25,6 +25,12 @@ describe('Product Route', function () {
       password: 'MOM'
     }
 
+     var userInfo2 = {
+      id: 3,
+      email: 'tinafey@thirtyrock.com',
+      password: 'hotdog'
+    }
+
     beforeEach('Create a Product', function (done) {
       return User.create(userInfo).then(function (user) {
                 done();
@@ -67,6 +73,19 @@ describe('Product Route', function () {
             done();
           });
       });
+
+       it('should successfully create a new user and get a 201 status response', function(done) {
+            userAgent.post('/api/users/')
+                .send(userInfo2)
+                .expect(201)
+                .end(function(err, response) {
+                    if (err) return done(err);
+                    expect(response.body).to.be.an('object');
+                    expect(response.body.id).to.eql(userInfo2.id);
+                    expect(response.body.description).to.eql(userInfo2.description);
+                    done();
+                });
+        });
 
     });
 })
