@@ -52,3 +52,25 @@ Product Gallery -->
         </div><!-- .product-info -->
       </div><!-- .container -->
     </section><!-- .fw-section.bg-gray -->
+
+
+    <!-- Product Tabs -->
+    <section class="container padding-top-2x">
+      <!-- Nav Tabs -->
+     <h2>Reviews</h2><!-- .nav-tabs -->
+      <!-- Tab panes -->
+        <reviews ng-repeat="review in reviewArray" review="review"></reviews>
+          <!-- Review -->
+          <!-- Reviview Form -->
+          <h4 class="padding-top">Leave a review</h4>
+          <review-leave leave-review="leaveReview" submit-review="submitReview()"></review-leave>
+    </section><!-- .container -->
+
+    <!-- Related Products -->
+    <section class="container padding-top padding-bottom">
+      <hr>
+      <h3 class="padding-top">You May Also Like</h3>
+      <div class="row padding-top">
+       <product ng-repeat="product in products track by $index" product="product"></product>
+      </div><!-- .row -->
+    </section><!-- .container -->

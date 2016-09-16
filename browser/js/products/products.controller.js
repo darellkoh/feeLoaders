@@ -38,13 +38,36 @@ app.controller('ProductsCtrl', function($scope, products, $stateParams){
 		else
 			return '';
 	}
-
-
-
 });
 
 app.controller('singleProductCtrl', function($scope, product){
-	console.log("product: ", product)
-	$scope.product = product;
+  $scope.product = product;
+  var products = [];
+  for(var i = 0; i < 4; i++){
+    products.push(product)
+  }
+  $scope.products = products;
+
+  console.log("products", $scope.products)
+
+  $scope.leaveReview = {};
+  $scope.submitReview = function(){
+    console.log($scope.leaveReview)
+  }
+
+  $scope.reviewArray = [
+  {
+    title: "title for you",
+    rating: 4,
+    content: "this is great!",
+    user: "Milad Nazeri"
+  },
+  {
+    title: "title title title",
+    rating: 2,
+    content: "this is fucking great!",
+    user: "Joe"
+  },
+  ]
 
 })
