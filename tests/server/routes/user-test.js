@@ -33,14 +33,14 @@ describe('Product Route', function () {
 
     describe('User route responds with created user.', function () {
 
-      var orderAgent;
+      var userAgent;
 
-      beforeEach('Create order agent', function () {
-        orderAgent = supertest.agent(app);
+      beforeEach('Create user agent', function () {
+        userAgent = supertest.agent(app);
       });
 
       it('should get a 200 response from the users route and the first user should have an id of 1', function (done) {
-        orderAgent.get('/api/users/')
+        userAgent.get('/api/users/')
           .expect(200)
           .end(function (err, response) {
             if (err) return done(err);
@@ -48,14 +48,14 @@ describe('Product Route', function () {
             expect(response.body[0].id).to.eql(userInfo.id);
             expect(response.body[0].email).to.eql(userInfo.email);
             // Shouldn't check password here because it's encrypted on the response
-            // Security Schmamertiy 
+            // Security Schmamertiy
             expect(response.body.length).to.eql(1);
             done();
           });
       });
 
       it('should get a 200 response from the users/1 route and the user should have an id of 1', function (done) {
-        orderAgent.get('/api/users/1')
+        userAgent.get('/api/users/1')
           .expect(200)
           .end(function (err, response) {
             if (err) return done(err);
@@ -63,7 +63,7 @@ describe('Product Route', function () {
             expect(response.body.id).to.eql(userInfo.id);
             expect(response.body.email).to.eql(userInfo.email);
             // Shouldn't check password here because it's encrypted on the response
-            // Security Schmamertiy 
+            // Security Schmamertiy
             done();
           });
       });

@@ -164,7 +164,6 @@ orders.put('/:orderId/orderItems/:orderItemsId', function(req, res, next){
 
 
 //GET one order item
-
 orders.get('/:orderId/orderItems/:orderItemsId', function(req, res, next){
   var orderItem = req.params.orderItemsId;
   OrderItem.findById(orderItem)
