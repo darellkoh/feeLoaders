@@ -24,9 +24,7 @@ describe('Product Route', function() {
         name: 'ToothBrush',
         description: 'A really nice toothbrush.',
         price: 500,
-        inStock: 5,
-        tags: ['clean', 'teeth', 'hygiene'],
-        category: 'toiletries'
+        qtyInStock: 5
 
     }
     var productInfo2 = {
@@ -34,9 +32,7 @@ describe('Product Route', function() {
         name: 'milad',
         description: 'A really nice toothbrush.',
         price: 500,
-        inStock: 5,
-        tags: ['clean', 'teeth', 'hygiene'],
-        category: 'toiletries'
+        inStock: 5
     }
 
     beforeEach('Create a Product', function(done) {
