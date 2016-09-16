@@ -1,8 +1,7 @@
 app.config(function($stateProvider){
+
 	$stateProvider.state('products', {
 		url: '/products',
-		// Stubbing this in for now
-		// Will be providing an html file later
 		params: { selectedString: '' },
 		templateUrl: '/js/products/products.html',
 		controller: 'ProductsCtrl',
@@ -12,14 +11,13 @@ app.config(function($stateProvider){
 			}
 		}
 	});
+
 });
 
 app.config(function($stateProvider){
+
 	$stateProvider.state('singleProduct', {
 		url: '/products/:id',
-		// Stubbing this in for now
-		// Will be providing an html file later
-		// template: '<h1> Welcome to individual product page </h1>',
 		templateUrl: '/js/products/product.html',
 		controller: 'singleProductCtrl',
 		resolve: {
@@ -28,4 +26,5 @@ app.config(function($stateProvider){
 			}
 		}
 	});
+	
 });
