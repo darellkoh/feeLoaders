@@ -14,19 +14,12 @@
           <ul class="nav-filters">
           	<li ng-class=isActive('') style='cursor:pointer'><a ng-click=setSelected('')>All</a> <sup>{{products.length}}</sup></li>
           	<li ng-repeat='category in categories' ng-class=isActive(category) style='cursor:pointer'><a ng-click=setSelected(category)>{{ category | filter: upperCase }} </a> <sup>{{accumObj[category]}}</sup></li>
-
-
-            <!-- <li ng-class=isActive('') style='cursor:pointer'><a ng-click=setSelected('')>All</a> <sup>{{products.length}}</sup></li>
-            <li ng-class=isActive('google') style='cursor:pointer' ><a ng-click=setSelected('google')>Google</a> <sup>{{accumObj["google"]}}</sup></li>
-            <li ng-class=isActive('images') style='cursor:pointer'><a  ng-click=setSelected('images')>Images</a> <sup>{{accumObj["images"]}}</sup></li>
-            <li ng-class=isActive('memes') style='cursor:pointer'><a ng-click=setSelected('memes')>Memes</a> <sup>{{accumObj["memes"]}}</sup></li>
-            <li ng-class=isActive('NYC-Only') style='cursor:pointer'><a ng-click=setSelected('NYC-Only')>New York Only</a> <sup>{{accumObj["NYC-Only"]}}</sup></li> -->
           </ul><!-- .nav-filters -->
         </div><!-- .column -->
        </div>
     </section>
-     </div>   
-   
+     </div>
+
 <!-- Shop Catalog -->
     <section class="container padding-bottom-3x">
       <div class="row">
