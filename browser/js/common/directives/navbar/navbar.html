@@ -31,40 +31,22 @@
         <div class="toolbar-section" id="menu">
           <div class="inner">
             <ul class="main-navigation space-bottom">
-              <li class="menu-item-has-children current-menu-item">
-                <a href="#">Home</a>
-                <ul class="sub-menu">
-                  <li class="current-menu-item"><a href="index.html">Home Version 1</a></li>
-                  <li><a href="home-v2.html">Home Version 2</a></li>
-                  <li><a href="home-v3.html">Home Version 3</a></li>
-                </ul>
+              <li>
+                <a ui-sref="home">Home</a>
               </li>
-              <li class="menu-item-has-children">
-                <a href="#">Shop</a>
-                <ul class="sub-menu">
-                  <li><a href="shop-fullwidth-sl.html">Full Width Sidebar Left</a></li>
-                  <li><a href="shop-fullwidth-sr.html">Full Width Sidebar Right</a></li>
-                  <li><a href="shop-fullwidth-ft.html">Full Width Filters Top</a></li>
-                  <li><a href="shop-boxed-sl.html">Boxed Sidebar Left</a></li>
-                  <li><a href="shop-boxed-sr.html">Boxed Sidebar Right</a></li>
-                  <li><a href="shop-boxed-ft.html">Boxed Filters Top</a></li>
-                  <li><a href="shop-single.html">Single Product</a></li>
-                </ul>
+              <li>
+                <a ui-sref="products"">Shop</a>
               </li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="contacts.html">Contacts</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="elements.html">Elements</a></li>
+              <li><a ui-sref="faq">FAQ</a></li>
             </ul><!-- .main-navigation -->
             <ul class="list-icon text-sm">
               <li>
                 <i class="material-icons location_on"></i>
-                45 Park Avenue, Apt. 303<br>New York, NY 10016, USA
+                5 Hanover Square<br>New York, NY 10004, USA
               </li>
               <li>
                 <i class="material-icons phone"></i>
-                001 (917) 555-4836
+                (917) 555-4836
               </li>
               <li>
                 <i class="material-icons email"></i>
@@ -126,16 +108,17 @@
             </a>
           </div><!-- .inner -->
         </div><!-- .toolbar-section#account -->
-
+        <div class="toolbar-section" id="cart">
+          <order></order>
+        </div>
         <!-- Original Ugly Buttons  -->
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+<!--         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <button ui-sref="cart" class="btn btn-warning login-button">Cart</button>
         <div ng-show="user" class="welcome">
             <span>Welcome, {{ user.email }}!</span>
             <button class="btn" ng-click="logout()">Logout</button>
-         <!--    <a ng-click="logout()">Logout</a> -->
         </div>
-
+ -->
     </div>
 
 </nav>
