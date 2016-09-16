@@ -16,19 +16,12 @@ module.exports = db.define('product', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    inStock: {
+    qtyInStock: {
         type: Sequelize.INTEGER,
         allowNull: false,
         validate: {
           min: 0
         }
-    },
-    tags: {
-        type: Sequelize.ARRAY(Sequelize.STRING), /* this causes a warning in the linter */
-    },
-    category: {
-        type: Sequelize.STRING,
-        allowNull: false
     },
     photo: {
         type: Sequelize.STRING,

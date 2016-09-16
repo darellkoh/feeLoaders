@@ -22,14 +22,14 @@ describe('Order Route', function() {
     var orderInfo = {
         id: 1,
         date: new Date(),
-        isOrderComplete: true
+        complete: true
     }
 
 
     var orderInfo2 = {
         id: 5,
         date: new Date(),
-        isOrderComplete: false
+        complete: false
     }
 
     beforeEach('Create an Order', function(done) {
