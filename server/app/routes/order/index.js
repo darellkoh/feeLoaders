@@ -15,8 +15,10 @@ orders.get('/', function(req, res, next) {
     Order.findAll()
         .then(function(allOrders) {
 
-            if (!allOrders) {
-                res.sendStatus(404);
+            if (allOrders.length === 0) {
+                var err = new Error('Order does not exist.');
+                err.status = 404;
+                throw err;
             } else {
                 res.status(200).send(allOrders);
             }
@@ -49,51 +51,11 @@ orders.param('orderId', function(req, res, next, id) {
             }
             req.order = order;
             next();
-            return null;
         })
         .catch(next);
 });
 
-// ASk KATE/JOE/GEOFF
-
-// orders.param('orderId', function(req, res, next, id) {
-//     OrderItem.findAll({
-//       where: {
-//         orderId: id
-//       }
-//     })
-//       .then(function(order) {
-//         console.log('orderzzzzz$$$$$', order);
-//           if (!order) {
-//               var err = new Error('Order does not exist.');
-//               err.status = 404;
-//               throw err;
-//           }
-//           req.order = order;
-//           next();
-//           return null;
-//       })
-//       .catch(next);
-// });
-
-
-// POST one OrderItem
 orders.post('/:orderId/orderItems', function(req, res, next) {
-    // Order.findOrCreate({
-    //   where: {
-    //     id: req.order.orderId
-    //   }
-    // })
-    // .then(function(results){
-    //   var order = results[0];
-
-    // req.order.addProduct(1)
-    // .then(function(foundProduct){
-    //   res.send(foundProduct);
-    // })
-    // .catch(next);
-
-
     OrderItem.create(req.body)
         .then(function(orderItem) {
             orderItem.setOrder(req.order.id);

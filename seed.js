@@ -21,6 +21,8 @@ var chalk = require('chalk');
 var db = require('./server/db');
 var User = db.model('user');
 var Product = db.model('product');
+var Category = db.model('category');
+var Tags = db.model('tags');
 
 var Review = db.model('review');
 var OrderItem = db.model('orderItem');
@@ -47,6 +49,39 @@ var seedUsers = function () {
     return Promise.all(creatingUsers);
 
 };
+
+var seedCategories = function () {
+    var categories = [
+        {
+            name: "Google"
+        },
+        {
+            name: "Memes"
+        },
+        {
+            name: "Only in Ny"
+        },
+        {
+            name: "troll posts"
+        },
+    ]
+}
+var seedTags = function () {
+    var categories = [
+        {
+            name: "funny"
+        },
+        {
+            name: "google"
+        },
+        {
+            name: "horrible"
+        },
+        {
+            name: "Milad"
+        },
+    ]
+}
 
 var seedProducts = function () {
 
@@ -82,6 +117,20 @@ db.sync({ force: true })
     })
     .then(function () {
         console.log(chalk.green('Seed users successful!'));
+        //process.exit(0);
+    })
+    .then(function () {
+        return seedCategories();
+    })
+    .then(function () {
+        console.log(chalk.green('Seed Categories successful!'));
+        //process.exit(0);
+    })
+    .then(function () {
+        return seedTags();
+    })
+    .then(function () {
+        console.log(chalk.green('Seed Tags successful!'));
         //process.exit(0);
     })
     .then(function(){
