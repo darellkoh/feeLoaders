@@ -3,7 +3,7 @@ app.factory('ProductsFactory', function($http){
 	var productService = {};
 
 		productService.getAll = function(){
-			console.log('got here')
+			
 			return $http.get('/api/products/')
 					.then(function(response){
 						return response.data;
