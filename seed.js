@@ -29,6 +29,9 @@ var OrderItem = db.model('orderItem');
 var Order = db.model('order');
 var Promise = require('sequelize').Promise;
 
+var categoryServices = require('./seedUtils/category');
+var productServices = require('./seedUtils/products');
+
 var seedUsers = function () {
 
     var users = [
@@ -51,23 +54,9 @@ var seedUsers = function () {
 };
 
 var seedCategories = function () {
-    var categories = [
-        {
-            name: "Google"
-        },
-        {
-            name: "Memes"
-        },
-        {
-            name: "Only in Ny"
-        },
-        {
-            name: "troll posts"
-        },
-    ];
-
-    var creatingCategories = categories.map( function(categoryObj){
-        return Category.create(categoryObj);
+    
+    var creatingCategories = categoryServices.CATEGORIES.map( function(categoryName){
+        return Category.create({ name: categoryName });
     });
 
     return Promise.all(creatingCategories);
@@ -97,26 +86,9 @@ var seedTags = function () {
 
 var seedProducts = function () {
 
-    var products = [
-        {
-            name: 'google search',
-            description: 'A google search.',
-            price: 500,
-            qtyInStock: 600,
-            tags: ['wasteOfMoney','dummyTag'],
-            categoryId: 1
-        },
-        {
-            name: 'bottle of tap water',
-            description: 'bottle of NYC tap water',
-            price: 700,
-            qtyInStock: 800,
-            tags: ['wasteOfMoney','dummyTag2'],
-            categoryId: 2
-        }
-    ];
+    var creatingProducts = productServices.PRODUCTS().map(function (projectObj) {
 
-    var creatingProducts = products.map(function (projectObj) {
+
         return Product.create(projectObj);
     });
 
