@@ -26,6 +26,14 @@ app.factory('OrderFactory', function($http){
       } else {
         showCart = false;
       }
+    },
+    setShowCart: function(value){
+      if(value === undefined){
+        value = !showCart;
+      }else{
+        showCart = value;
+      }
+
     }
   }
 })

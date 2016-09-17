@@ -1,4 +1,4 @@
-app.directive('navBarUtil', function(){
+app.directive('navBarUtil', function(OrderFactory){
     return {
         restrict: 'A',
         link: function(s,e,a){
@@ -12,6 +12,8 @@ app.directive('navBarUtil', function(){
             }
 
             toolbarToggle.on('click', function(e) {
+                console.log("this",$(this))
+                console.log("this href", $(this).attr('href'))
                 console.log("toolbarToggle")
                 var currentValue = $(this).attr('href');
                 if ($(e.target).is('.active')) {
@@ -22,6 +24,9 @@ app.directive('navBarUtil', function(){
                     closeToolBox();
                     $(this).addClass('active');
                     $(currentValue).addClass('current');
+                    if (currentValue === "#cart"){
+                        $('#cart-toolbar-section').addClass('current');
+                    }
                 }
                 e.preventDefault();
             });
@@ -46,13 +51,34 @@ app.directive('navBarUtil', function(){
                 e.preventDefault();
             });
 
-            $('#main').on('click', function() {
+            $('#main').on('click', function(e) {
+                console.log(e.target.tagName == "EM");
+               if(e.target.tagName !== "EM"){
                 toolbarDropdown.removeClass('open');
                 toolbarToggle.removeClass('active');
                 toolbarSection.removeClass('current');
+                OrderFactory.setShowCart(false);
+                }else{
+                    console.log("else");
+                }
+            });
+            $('#main').on('click', function(e) {
+                console.log(e.target.tagName == "EM");
+               if(e.target.tagName === "EM"){
+                // if ($(e.target).is('.active')) {
+                //     closeToolBox();
+                //     toolbarDropdown.removeClass('open');
+                // } else {
+                    $('#toolbar-dropdown-id').addClass('open');
+                    // closeToolBox();
+                    $('#cart-toolbar-toggle').addClass('active');
+                     $('#cart-toolbar-section').addClass('current');
+                // }
+                e.preventDefault();
+
+                }
             });
             $('.toolbar-section a').on('click',  function() {
-                console.log("JOE!!")
                 toolbarDropdown.removeClass('open');
                 toolbarToggle.removeClass('active');
                 toolbarSection.removeClass('current');
