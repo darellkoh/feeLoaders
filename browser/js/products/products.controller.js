@@ -1,7 +1,7 @@
 app.filter( 'categoryFilter', function(){
 
     return function(products, selectedCatId){
-    	
+
         if( selectedCatId > 0 ){
         	return products.filter(function(product){
         		return (product.categoryId === selectedCatId);
@@ -35,8 +35,8 @@ app.controller('ProductsCtrl', function($scope, $stateParams, products, categori
 
 	$scope.selectedCategoryStr = function(){
 
-		return $scope.selectedCategoryId === -1  ? 
-		'' : 
+		return $scope.selectedCategoryId === -1  ?
+		'' :
 		categories[$scope.selectedCategoryId - 1].name;
 	}
 
@@ -58,14 +58,14 @@ app.controller('ProductsCtrl', function($scope, $stateParams, products, categori
 
 
 app.controller('singleProductCtrl', function($scope, product, categories, OrderFactory){
-  
+
   $scope.product = product;
   $scope.products = products;
 
   $scope.getCategoryStr = function(categoryId){
   	return categories[categoryId - 1].name;
   }
-  
+
   var products = [];
   for(var i = 0; i < 4; i++){
     products.push(product)
@@ -93,7 +93,15 @@ app.controller('singleProductCtrl', function($scope, product, categories, OrderF
   ]
 
   $scope.addToCart = function(product){
-    OrderFactory.addToCart(product);
-    OrderFactory.toggleShowCart();
+    var showCart = OrderFactory.getShowCart();
+    console.log('SHOW CART', showCart);
+    if(showCart){
+      OrderFactory.addToCart(product);
+       console.log('SHOW CART whe show cart is true', showCart);
+    }else{
+      OrderFactory.addToCart(product);
+      OrderFactory.setShowCart(true);
+      console.log('SHOW CART whe show cart is false -else', showCart);
+    }
   }
 })

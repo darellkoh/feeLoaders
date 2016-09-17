@@ -13,7 +13,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
                 { label: 'Members Only', state: 'membersOnly', auth: true }
             ];
 
-            scope.clickedMenuIcon = false;
+           // scope.clickedMenuIcon = false;
 
             scope.user = null;
 
@@ -47,9 +47,9 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
 
         },
         controller: function($scope){
-             $scope.showCart = OrderFactory.getShowCart;
-            // $scope.showCart = true;
-            $scope.toggleCartView = OrderFactory.toggleShowCart;
+           $scope.showCart = OrderFactory.getShowCart;
+           $scope.toggleCartView = OrderFactory.toggleShowCart;
+
         }
 
     };

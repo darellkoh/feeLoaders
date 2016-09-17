@@ -6,14 +6,6 @@ app.directive('order', function(OrderFactory, ProductsFactory){
     },
     template: `
 
-      <div class="toolbar-section" id="cart">
-        <div class="shopping-cart">
-
-          <h1>TESTING</h1>
-
-        </div><!-- .shopping-cart -->
-      </div><!-- .toolbar-section#cart -->
-
       <order-item ng-repeat="product in cart track by $index" product="product"></order-item>
       <!-- Subtotal -->
       <div class="cart-subtotal space-bottom">

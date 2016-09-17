@@ -37,9 +37,18 @@ app.directive('product', function(){
 		`,
 	 controller: function($scope, OrderFactory) {
     $scope.addToCart = function(product){
+    var showCart = OrderFactory.getShowCart();
+    //if(showCart){
+    	OrderFactory.setShowCart(true);
       OrderFactory.addToCart(product);
-      OrderFactory.toggleShowCart();
-    }
-   }
+      OrderFactory.setShowCart(true);
+      //OrderFactory.toggleShowCart();
+  //   }else{
+  //     OrderFactory.setShowCart(false);
+  //     OrderFactory.addToCart(product);
+  //     OrderFactory.toggleShowCart();
+		// }
 	}
-});
+	}
+	}
+})

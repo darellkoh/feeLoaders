@@ -6,9 +6,10 @@
         <!-- Toolbar sticky   -->
         <div class="toolbar"> <!-- class="toolbar" -->
          <div class="inner">
-          <a ng-click="clickedMenuIcon" href="#menu" class="toolbar-toggle"><i class="material-icons menu"></i></a>
+          <a href="#menu" class="toolbar-toggle"><i class="material-icons menu"></i></a>
           <a href="#account" class="toolbar-toggle"><i class="material-icons person"></i></a>
-          <a ng-click="toggleCartView()" href="#cart" ng-class="{ 'toolbar-toggle active': showCart(), 'toolbar-toggle': !showCart() }"> <!-- class="toolbar-toggle"  -->
+          <a
+          class="toolbar-toggle" href="#cart"> <!-- class="toolbar-toggle"  -->
             <i>
               <span class="material-icons shopping_basket"></span>
               <span class="count">2</span>
@@ -27,8 +28,8 @@
        <!--  ng-class="{ 'toolbar-dropdown open': showCart(), 'toolbar-dropdown': !showCart() }" -->
 
       <!--   Toolbar dropdown  -->
-        <div ng-class="{ 'toolbar-dropdown open': showCart(), 'toolbar-dropdown': !showCart() }">
-
+        <div id="toolbar-dropdown-id" class="toolbar-dropdown" >
+      <!-- <div class="toolbar-dropdown"> -->
         <!-- Menu -->
         <div class="toolbar-section" id="menu">
           <div class="inner">
@@ -110,7 +111,7 @@
             </a>
           </div><!-- .inner -->
         </div><!-- .toolbar-section#account -->
-        <div ng-class="{ 'toolbar-section current': showCart(), 'toolbar-section': !showCart() }" id="cart">
+        <div id="cart-toolbar-section" class="toolbar-section" id="cart">
           <order></order>
         </div>
         <!-- Original Ugly Buttons  -->
