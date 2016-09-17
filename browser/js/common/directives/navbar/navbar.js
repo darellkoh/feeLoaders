@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, OrderFactory) {
 
     return {
         restrict: 'E',
@@ -43,6 +43,13 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
             $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
 
+            // scope.showCart = OrderFactory.getShowCart();
+
+        },
+        controller: function($scope){
+             $scope.showCart = OrderFactory.getShowCart;
+            // $scope.showCart = true;
+            $scope.toggleCartView = OrderFactory.toggleShowCart;
         }
 
     };

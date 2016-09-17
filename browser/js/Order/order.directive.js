@@ -13,7 +13,8 @@ app.directive('order', function(OrderFactory, ProductsFactory){
 
         </div><!-- .shopping-cart -->
       </div><!-- .toolbar-section#cart -->
-      <order-item ng-repeat="product in products" product="product"></order-item>
+
+      <order-item ng-repeat="product in cart track by $index" product="product"></order-item>
       <!-- Subtotal -->
       <div class="cart-subtotal space-bottom">
         <div class="column">
@@ -30,10 +31,6 @@ app.directive('order', function(OrderFactory, ProductsFactory){
       </div>
     `,
     controller: function($scope){
-      ProductsFactory.getAll()
-      .then(function(products){
-        $scope.products = products
-      })
       $scope.cart = OrderFactory.getCart();
     }
   }

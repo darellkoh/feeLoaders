@@ -1,4 +1,4 @@
-app.controller('ProductsCtrl', function($scope, products, $stateParams){
+app.controller('ProductsCtrl', function($scope, products, $stateParams, OrderFactory){
 
 	$scope.products = products;
 
@@ -36,18 +36,23 @@ app.controller('ProductsCtrl', function($scope, products, $stateParams){
 		else
 			return '';
 	}
+
+    $scope.addToCart = function(product){
+    OrderFactory.addToCart(product);
+    OrderFactory.toggleShowCart();
+  }
 });
 
-app.controller('singleProductCtrl', function($scope, product){
-  
+app.controller('singleProductCtrl', function($scope, product, OrderFactory){
+
   $scope.product = product;
   $scope.products = products;
-  
+
   var products = [];
   for(var i = 0; i < 4; i++){
     products.push(product)
   }
-  
+
   $scope.leaveReview = {};
 
   $scope.submitReview = function(){
@@ -69,4 +74,8 @@ app.controller('singleProductCtrl', function($scope, product){
   },
   ]
 
+  $scope.addToCart = function(product){
+    OrderFactory.addToCart(product);
+    OrderFactory.toggleShowCart();
+  }
 })
