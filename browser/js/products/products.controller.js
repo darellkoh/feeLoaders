@@ -12,7 +12,8 @@ app.filter( 'categoryFilter', function(){
     }
 })
 
-app.controller('ProductsCtrl', function($scope, $stateParams, products, categories){
+app.controller('ProductsCtrl', function($scope, $stateParams, products, categories, OrderFactory){
+
 
 	$scope.products = products;
 
@@ -48,9 +49,15 @@ app.controller('ProductsCtrl', function($scope, $stateParams, products, categori
 		return +id === $scope.selectedCategoryId ? 'active' : '';
 
 	}
+
+    $scope.addToCart = function(product){
+    OrderFactory.addToCart(product);
+    OrderFactory.toggleShowCart();
+  }
 });
 
-app.controller('singleProductCtrl', function($scope, product, categories){
+
+app.controller('singleProductCtrl', function($scope, product, categories, OrderFactory){
   
   $scope.product = product;
   $scope.products = products;
@@ -63,7 +70,7 @@ app.controller('singleProductCtrl', function($scope, product, categories){
   for(var i = 0; i < 4; i++){
     products.push(product)
   }
-  
+
   $scope.leaveReview = {};
 
   $scope.submitReview = function(){
@@ -85,4 +92,8 @@ app.controller('singleProductCtrl', function($scope, product, categories){
   },
   ]
 
+  $scope.addToCart = function(product){
+    OrderFactory.addToCart(product);
+    OrderFactory.toggleShowCart();
+  }
 })

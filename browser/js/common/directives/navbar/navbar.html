@@ -4,11 +4,11 @@
             <fullstack-logo></fullstack-logo>
         </div>
         <!-- Toolbar sticky   -->
-        <div class="toolbar">
+        <div class="toolbar"> <!-- class="toolbar" -->
          <div class="inner">
           <a ng-click="clickedMenuIcon" href="#menu" class="toolbar-toggle"><i class="material-icons menu"></i></a>
           <a href="#account" class="toolbar-toggle"><i class="material-icons person"></i></a>
-          <a href="#cart" class="toolbar-toggle">
+          <a ng-click="toggleCartView()" href="#cart" ng-class="{ 'toolbar-toggle active': showCart(), 'toolbar-toggle': !showCart() }"> <!-- class="toolbar-toggle"  -->
             <i>
               <span class="material-icons shopping_basket"></span>
               <span class="count">2</span>
@@ -24,8 +24,10 @@
             </li>
         </ul> -->
 
+       <!--  ng-class="{ 'toolbar-dropdown open': showCart(), 'toolbar-dropdown': !showCart() }" -->
+
       <!--   Toolbar dropdown  -->
-        <div ng-class="" class="toolbar-dropdown">
+        <div ng-class="{ 'toolbar-dropdown open': showCart(), 'toolbar-dropdown': !showCart() }">
 
         <!-- Menu -->
         <div class="toolbar-section" id="menu">
@@ -35,7 +37,7 @@
                 <a ui-sref="home">Home</a>
               </li>
               <li>
-                <a ui-sref="products"">Shop</a>
+                <a ui-sref="products"">Products</a>
               </li>
               <li><a ui-sref="faq">FAQ</a></li>
             </ul><!-- .main-navigation -->
@@ -108,7 +110,7 @@
             </a>
           </div><!-- .inner -->
         </div><!-- .toolbar-section#account -->
-        <div class="toolbar-section" id="cart">
+        <div ng-class="{ 'toolbar-section current': showCart(), 'toolbar-section': !showCart() }" id="cart">
           <order></order>
         </div>
         <!-- Original Ugly Buttons  -->
