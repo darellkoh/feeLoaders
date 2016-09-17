@@ -32,7 +32,7 @@ describe('Product Route', function() {
         name: 'milad',
         description: 'A really nice toothbrush.',
         price: 500,
-        inStock: 5
+        qtyInStock: 5
     }
 
     beforeEach('Create a Product', function(done) {

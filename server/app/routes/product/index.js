@@ -16,7 +16,7 @@ router.get('/', function( req, res, next){
 
 // POST one
 router.post('/', function(req, res, next){
-  console.log('#################', req.body)
+  
   Product.create(req.body)
   .then(function(createdProduct){
     res.status(201).send(createdProduct);

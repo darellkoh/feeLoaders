@@ -1,23 +1,25 @@
-app.factory('ProductsFactory', function($http){
+app.factory('ProductsFactory', function($http, $log){
 
-	var productService = {};
+	var services = {};
 
-		productService.getAll = function(){
+		services.getAll = function(){
 			
 			return $http.get('/api/products/')
 					.then(function(response){
 						return response.data;
 					})
+					.catch($log)
 		}
 
-		productService.getOne = function(id){
+		services.getOne = function(id){
 			return $http.get('/api/products/' + id )
 						.then(function(response){
 							return response.data;
-						});
+						})
+						.catch($log)
 		}
 
 
-	return productService;
+	return services;
 
 });

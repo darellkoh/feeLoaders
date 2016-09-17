@@ -64,10 +64,16 @@ var seedCategories = function () {
         {
             name: "troll posts"
         },
-    ]
+    ];
+
+    var creatingCategories = categories.map( function(categoryObj){
+        return Category.create(categoryObj);
+    });
+
+    return Promise.all(creatingCategories);
 }
 var seedTags = function () {
-    var categories = [
+    var tags = [
         {
             name: "funny"
         },
@@ -80,7 +86,13 @@ var seedTags = function () {
         {
             name: "Milad"
         },
-    ]
+    ];
+
+    var creatingTags = tags.map( function(tagObj){
+        return Tags.create(tagObj);
+    });
+
+    return Promise.all(creatingTags);
 }
 
 var seedProducts = function () {
@@ -90,7 +102,7 @@ var seedProducts = function () {
             name: 'google search',
             description: 'A google search.',
             price: 500,
-            inStock: 600,
+            qtyInStock: 600,
             tags: ['wasteOfMoney','dummyTag'],
             category: 'google'
         },
@@ -98,7 +110,7 @@ var seedProducts = function () {
             name: 'bottle of tap water',
             description: 'bottle of NYC tap water',
             price: 700,
-            inStock: 800,
+            qtyInStock: 800,
             tags: ['wasteOfMoney','dummyTag2'],
             category: 'miladsSink'
         }
