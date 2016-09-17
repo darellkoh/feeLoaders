@@ -1,40 +1,53 @@
-app.controller('ProductsCtrl', function($scope, products, $stateParams, OrderFactory){
+app.filter( 'categoryFilter', function(){
+
+    return function(products, selectedCatId){
+    	
+        if( selectedCatId > 0 ){
+        	return products.filter(function(product){
+        		return (product.categoryId === selectedCatId);
+        	})
+        }
+        else
+        	return products;
+    }
+})
+
+app.controller('ProductsCtrl', function($scope, $stateParams, products, categories, OrderFactory){
+
 
 	$scope.products = products;
 
-	$scope.categories = _.uniq(_.pluck(products, 'category'));
+	$scope.categories = categories;
 
-	function getCategories(){
-		var categoryObj = {};
+	$scope.categoryCount = function(categoryId){
+		var catCount = 0;
 
-		$scope.categories.forEach(function(val){
-			categoryObj[val] = 0;
+		products.forEach(function(product){
+			if( product.categoryId === categoryId ){
+				catCount++
+			}
 		})
 
-		return categoryObj;
+		return catCount;
 	}
 
-	$scope.accumObj = products.reduce(function(prev, cur){
-		if(!prev[cur.category]){
-			prev[cur.category] = 1;
-			return prev
-		}
-		prev[cur.category]++
-		prev["all"]++
-		return prev;
-	}, getCategories());
+	$scope.selectedCategoryId = $stateParams.categoryID; // Initialize to all on initial page load
 
-	$scope.selected = $stateParams.selectedString; // Initialize to all on initial page load
+	$scope.selectedCategoryStr = function(){
 
-	$scope.setSelected = function(string){
-		$scope.selected = string;
+		return $scope.selectedCategoryId === -1  ? 
+		'' : 
+		categories[$scope.selectedCategoryId - 1].name;
+	}
+
+	$scope.setSelected = function(categoryId){
+		$scope.selectedCategoryId = categoryId;
 	};
 
-	$scope.isActive = function(string){
-		if( string === $scope.selected )
-			return 'active';
-		else
-			return '';
+	$scope.isActive = function(id){
+
+		return +id === $scope.selectedCategoryId ? 'active' : '';
+
 	}
 
     $scope.addToCart = function(product){
@@ -43,11 +56,16 @@ app.controller('ProductsCtrl', function($scope, products, $stateParams, OrderFac
   }
 });
 
-app.controller('singleProductCtrl', function($scope, product, OrderFactory){
 
+app.controller('singleProductCtrl', function($scope, product, categories, OrderFactory){
+  
   $scope.product = product;
   $scope.products = products;
 
+  $scope.getCategoryStr = function(categoryId){
+  	return categories[categoryId - 1].name;
+  }
+  
   var products = [];
   for(var i = 0; i < 4; i++){
     products.push(product)

@@ -104,7 +104,7 @@ var seedProducts = function () {
             price: 500,
             qtyInStock: 600,
             tags: ['wasteOfMoney','dummyTag'],
-            category: 'google'
+            categoryId: 1
         },
         {
             name: 'bottle of tap water',
@@ -112,7 +112,7 @@ var seedProducts = function () {
             price: 700,
             qtyInStock: 800,
             tags: ['wasteOfMoney','dummyTag2'],
-            category: 'miladsSink'
+            categoryId: 2
         }
     ];
 

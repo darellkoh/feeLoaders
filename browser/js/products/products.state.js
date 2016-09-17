@@ -2,12 +2,15 @@ app.config(function($stateProvider){
 
 	$stateProvider.state('products', {
 		url: '/products',
-		params: { selectedString: '' },
+		params: { categoryID: -1 },
 		templateUrl: '/js/products/products.html',
 		controller: 'ProductsCtrl',
 		resolve: {
 			products: function(ProductsFactory){
 				return ProductsFactory.getAll();
+			},
+			categories: function(categoryFactory){
+				return categoryFactory.getAll();
 			}
 		}
 	});
@@ -23,6 +26,9 @@ app.config(function($stateProvider){
 		resolve: {
 			product: function($stateParams, ProductsFactory){
 				return ProductsFactory.getOne($stateParams.id);
+			},
+			categories: function(categoryFactory){
+				return categoryFactory.getAll();
 			}
 		}
 	});
