@@ -18,20 +18,27 @@ app.directive('orderItem', function(OrderFactory){
           <h3 class="item-title"><a href="shop-single.html">{{product.name}}</a></h3>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
           <div class="count-input">
-            <a class="incr-btn" data-action="decrease" href="#">–</a>
-            <input class="quantity" type="text" value="1">
-            <a class="incr-btn" data-action="increase" href="#">+</a>
+            <a class="incr-btn" ng-click="decreaseQty(product)" data-action="decrease" href="#">–</a>
+            <input class="quantity" type="text" value="{{ product.qty }}">
+            <a class="incr-btn" ng-click="increaseQty(product)" data-action="increase" href="#">+</a>
           </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-1">
           <h4 class="item-price">{{ product.price | priceFilter }}</h4>
         </div>
 
+         <div class="col-md-1"></div>
+
+        <div class="col-md-2">
+          <h4 class="item-price">{{ product.price * product.qty | priceFilter }}</h4>
+        </div>
+
         <div class="col-md-1">
-          <a href="#" class="item-remove" data-toggle="tooltip" data-placement="top" title="Remove">
+
+          <a ng-click="removeFromCart(product)" class="item-remove" data-toggle="tooltip" data-placement="top" title="Remove">
             <i class="material-icons remove_shopping_cart"></i>
           </a>
         </div>
@@ -39,8 +46,10 @@ app.directive('orderItem', function(OrderFactory){
 
       </div>
     `,
-    controller: function($scope){
-
+    controller: function($scope, OrderFactory){
+      $scope.increaseQty = OrderFactory.increaseQty;
+      $scope.decreaseQty = OrderFactory.decreaseQty;
+      $scope.removeFromCart = OrderFactory.removeFromCart;
     }
   }
 })

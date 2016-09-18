@@ -4,14 +4,50 @@ app.factory('OrderFactory', function($http){
 
   return {
     addToCart: function(product){
+      if(!product.qty){
+        product.qty = 1;
+      }else{
+        product.qty++;
+        return;
+      }
       order.push(product);
       console.log(order)
     },
     updateCart: function(){
 
     },
-    removeFromCart: function(){
-
+    removeFromCart: function(product){
+      console.log('hit ittt', product)
+      var index = order.map(function(item){
+        return item.id
+      }).indexOf(product.id);
+      console.log('INDEXXXXXX', index);
+      order.splice(index, 1);
+    },
+    totalQuantity: function(){
+      var subTotal = order.reduce(function(prev, cur){
+        var subTotalLine = cur.qty;
+        prev += subTotalLine;
+        return prev;
+      },0)
+      return subTotal;
+    },
+    getSubTotal: function(){
+      var subTotal = order.reduce(function(prev, cur){
+        var subTotalLine = cur.qty * cur.price;
+        prev += subTotalLine;
+        return prev;
+      },0)
+      return subTotal;
+    },
+    increaseQty: function(product){
+      product.qty++;
+    },
+     decreaseQty: function(product){
+      console.log('productttt', product);
+      if(product.qty){
+        product.qty--;
+      }
     },
     getCart: function(){
       return order;
