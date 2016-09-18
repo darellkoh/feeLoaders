@@ -28,11 +28,18 @@ orders.get('/', function(req, res, next) {
 
 //POST - create new order
 orders.post('/', function(req, res, next) {
-    Order.create(req.body)
-        .then(function(orderCreated) {
-            res.status(201).send(orderCreated);
-        })
-        .catch(next);
+    if (req.query.sessionSave) {
+      req.session.cart = req.body
+      res.status(201).send(req.body);
+    }
+    else {
+      Order.create(req.body)
+          .then(function(orderCreated) {
+              res.status(201).send(orderCreated);
+          })
+          .catch(next);
+    }
+
 });
 
 //Order Params

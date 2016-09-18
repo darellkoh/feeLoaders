@@ -3,6 +3,18 @@ app.factory('OrderFactory', function($http){
   var order = [];
 
   return {
+    sendCartToSession: function(order){
+      $http.post('/api/orders/?sessionSave=true', order)
+      .then(function(orderConf){
+      })
+    },
+    getSessionCart: function(){
+      return $http.get('/sessionCart')
+      .then(function(cart){
+       if(cart.data.length > 0)
+        order = cart.data
+      })
+    },
     addToCart: function(product){
       if(!product.qty){
         product.qty = 1;
@@ -11,18 +23,14 @@ app.factory('OrderFactory', function($http){
         return;
       }
       order.push(product);
-      console.log(order)
-    },
-    updateCart: function(){
-
+      this.sendCartToSession(order);
     },
     removeFromCart: function(product){
-      console.log('hit ittt', product)
       var index = order.map(function(item){
         return item.id
       }).indexOf(product.id);
-      console.log('INDEXXXXXX', index);
       order.splice(index, 1);
+      this.sendCartToSession(order);
     },
     totalQuantity: function(){
       var subTotal = order.reduce(function(prev, cur){
@@ -42,14 +50,17 @@ app.factory('OrderFactory', function($http){
     },
     increaseQty: function(product){
       product.qty++;
+      this.sendCartToSession(order);
     },
      decreaseQty: function(product){
       console.log('productttt', product);
       if(product.qty){
         product.qty--;
+        this.sendCartToSession(order);
       }
     },
     getCart: function(){
+      console.log("running getCart", order)
       return order;
     },
     getShowCart: function(){
@@ -69,7 +80,6 @@ app.factory('OrderFactory', function($http){
       }else{
         showCart = value;
       }
-
     }
   }
 })
