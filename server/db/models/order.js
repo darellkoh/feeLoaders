@@ -16,5 +16,4 @@ module.exports = db.define('order', {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   }
-
 })
