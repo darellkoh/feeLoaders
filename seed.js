@@ -36,11 +36,13 @@ var seedUsers = function () {
 
     var users = [
         {
-            email: 'testing@fsa.com',
+            email: 'test@gmail.com',
+            isAdmin: false;
             password: 'password'
         },
         {
             email: 'obama@gmail.com',
+            isAdmin: true;
             password: 'potus'
         }
     ];
@@ -54,7 +56,7 @@ var seedUsers = function () {
 };
 
 var seedCategories = function () {
-    
+
     var creatingCategories = categoryServices.CATEGORIES.map( function(categoryName){
         return Category.create({ name: categoryName });
     });

@@ -18,15 +18,6 @@
         </div>
         </div>
 
-
-        <!-- <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-        </ul> -->
-
-       <!--  ng-class="{ 'toolbar-dropdown open': showCart(), 'toolbar-dropdown': !showCart() }" -->
-
       <!--   Toolbar dropdown  -->
         <div id="toolbar-dropdown-id" class="toolbar-dropdown" >
       <!-- <div class="toolbar-dropdown"> -->
@@ -80,72 +71,16 @@
 
         <!-- Account (Login) -->
         <div class="toolbar-section" id="account">
-          <h3 class="toolbar-title space-bottom">You are not logged in.</h3>
-          <div class="inner">
-            <form method="post" class="login-form">
-              <input type="text" class="form-control" placeholder="Username" required>
-              <input type="password" class="form-control" placeholder="Password" required>
-              <div class="form-footer">
-                <div class="rememberme">
-                  <label class="checkbox">
-                    <input type="checkbox" checked> Remember me
-                  </label>
-                </div>
-                <div class="form-submit">
-                  <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Login</button>
-                </div>
-              </div>
-            </form><!-- .login-form -->
-            <p class="text-sm space-top">Don’t have an account? <a href="#signup" class="toggle-section">Signup here</a> or with social account:</p>
-            <a href="#" class="social-signup-btn ssb-facebook">
-              <i class="socicon-facebook"></i>
-              <span>Signup with Facebook</span>
-            </a>
-            <a href="#" class="social-signup-btn ssb-google">
-              <i class="socicon-googleplus"></i>
-              <span>Signup with Google+</span>
-            </a>
-            <a href="#" class="social-signup-btn ssb-twitter">
-              <i class="socicon-twitter"></i>
-              <span>Signup with Twitter</span>
-            </a>
-          </div><!-- .inner -->
+
+        <login ng-hide="isLoggedIn()"></login>
+        <signup ng-show="showSignUp"></signup>
+        <user-logged-in ng-show="isLoggedIn()"></user-logged-in>
+
         </div><!-- .toolbar-section#account -->
         <div id="cart-toolbar-section" class="toolbar-section" id="cart">
           <order></order>
         </div>
-        <!-- Original Ugly Buttons  -->
-<!--         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
-        <button ui-sref="cart" class="btn btn-warning login-button">Cart</button>
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
-            <button class="btn" ng-click="logout()">Logout</button>
-        </div>
- -->
+
     </div>
 
 </nav>
-
-
-<!--
-<nav class="navbar navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <fullstack-logo></fullstack-logo>
-        </div>
-        <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-        </ul>
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
-        <button ui-sref="cart" class="btn btn-warning login-button">Cart</button>
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
-            <button class="btn" ng-click="logout()">Logout</button>
-         <!    <a ng-click="logout()">Logout</a> -->
-      <!--   </div>
-
-    </div>
-
-</nav>  -->
