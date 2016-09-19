@@ -1,21 +1,23 @@
-app.factory('OrderFactory', function($http){
+app.service('OrderFactory', function($http){
   var showCart = false;
   var order = [];
+  console.log("HERE ORDER")
+  var self = this;
 
-  return {
-    sendCartToSession: function(order){
+    this.sendCartToSession = function(order){
+      console.log("order!!!!", order)
       $http.post('/api/orders/?sessionSave=true', order)
       .then(function(orderConf){
       })
-    },
-    getSessionCart: function(){
+    }
+    this.getSessionCart = function(){
       return $http.get('/sessionCart')
       .then(function(cart){
        if(cart.data.length > 0)
         order = cart.data
       })
-    },
-    addToCart: function(product){
+    }
+    this.addToCart = function(product){
       if(!product.qty){
         product.qty = 1;
       }else{
@@ -23,63 +25,60 @@ app.factory('OrderFactory', function($http){
         return;
       }
       order.push(product);
-      this.sendCartToSession(order);
-    },
-    removeFromCart: function(product){
+      self.sendCartToSession(order);
+    }
+    this.removeFromCart= function(product){
       var index = order.map(function(item){
         return item.id
       }).indexOf(product.id);
       order.splice(index, 1);
-      this.sendCartToSession(order);
-    },
-    totalQuantity: function(){
+      self.sendCartToSession(order);
+    }
+    this.totalQuantity= function(){
       var subTotal = order.reduce(function(prev, cur){
         var subTotalLine = cur.qty;
         prev += subTotalLine;
         return prev;
       },0)
       return subTotal;
-    },
-    getSubTotal: function(){
+    }
+    this.getSubTotal= function(){
       var subTotal = order.reduce(function(prev, cur){
         var subTotalLine = cur.qty * cur.price;
         prev += subTotalLine;
         return prev;
       },0)
       return subTotal;
-    },
-    increaseQty: function(product){
+    }
+    this.increaseQty= function(product){
+      console.log("THIS", this)
       product.qty++;
-      this.sendCartToSession(order);
-    },
-     decreaseQty: function(product){
-      console.log('productttt', product);
+      self.sendCartToSession(order);
+    }
+     this.decreaseQty = function(product){
       if(product.qty){
         product.qty--;
-        this.sendCartToSession(order);
+        self.sendCartToSession(order);
       }
-    },
-    getCart: function(){
-      console.log("running getCart", order)
+    }
+    this.getCart =  function(){
       return order;
-    },
-    getShowCart: function(){
+    }
+    this.getShowCart = function(){
       return showCart;
-    },
-    toggleShowCart: function(){
-      console.log("toggling showcarttttt", showCart);
+    }
+    this.toggleShowCart = function(){
       if(showCart === false){
         showCart = true;
       } else {
         showCart = false;
       }
-    },
-    setShowCart: function(value){
+    }
+    this.setShowCart = function(value){
       if(value === undefined){
         value = !showCart;
       }else{
         showCart = value;
       }
     }
-  }
 })
