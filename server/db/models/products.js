@@ -14,13 +14,16 @@ module.exports = db.define('product', {
     },
     price: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            min: 0
+        }
     },
     qtyInStock: {
         type: Sequelize.INTEGER,
         allowNull: false,
         validate: {
-          min: 0
+            min: 0
         }
     },
     photo: {
