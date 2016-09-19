@@ -71,10 +71,9 @@
 
         <!-- Account (Login) -->
         <div class="toolbar-section" id="account">
-
-        <login ng-hide="isLoggedIn()"></login>
-        <signup ng-show="showSignUp"></signup>
-        <user-logged-in ng-show="isLoggedIn()"></user-logged-in>
+          <login ng-show="getLogin()"></login>
+          <signup ng-show="getSignUp()"></signup>
+          <user-logged-in ng-show="getLoggedIn()"></user-logged-in>
 
         </div><!-- .toolbar-section#account -->
         <div id="cart-toolbar-section" class="toolbar-section" id="cart">

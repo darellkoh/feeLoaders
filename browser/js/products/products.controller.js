@@ -12,8 +12,7 @@ app.filter( 'categoryFilter', function(){
     }
 })
 
-app.controller('ProductsCtrl', function($scope, $stateParams, products, categories, OrderFactory){
-
+app.controller('ProductsCtrl', function($scope, $filter, $stateParams, products, categories, OrderFactory){
 
 	$scope.products = products;
 
@@ -40,8 +39,12 @@ app.controller('ProductsCtrl', function($scope, $stateParams, products, categori
 		categories[$scope.selectedCategoryId - 1].name;
 	}
 
+  $scope.filteredCategories = products;
+
 	$scope.setSelected = function(categoryId){
 		$scope.selectedCategoryId = categoryId;
+    $scope.filteredCategories = $filter("categoryFilter")(products, categoryId)
+    console.log("scope filtered cats", $scope.filteredCategories);
 	};
 
 	$scope.isActive = function(id){

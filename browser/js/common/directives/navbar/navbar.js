@@ -48,10 +48,11 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
            $scope.showCart = OrderFactory.getShowCart;
            $scope.toggleCartView = OrderFactory.toggleShowCart;
            $scope.totalQuantity = OrderFactory.totalQuantity;
-           $scope.signup = NavFactory.signup;
-           $scope.setSignup = NavFactory.setSignup;
            $scope.isLoggedIn = NavFactory.isLoggedIn;
-           $scope.showSignUp = false;
+           $scope.setSignUp = NavFactory.setSignUp;
+           $scope.getSignUp = NavFactory.getSignUp;
+           $scope.getLogin = NavFactory.getLogin;
+           $scope.getLoggedIn = NavFactory.getLoggedIn;
         }
 
     };
