@@ -4,8 +4,6 @@
     <alert type="danger" ng-show="error">
     {{ error }}
     </alert>
-
-
         <input ng-model="login.email" type="text" class="form-control" placeholder="email" required>
         <input type="password" ng-model="login.password" class="form-control" placeholder="Password" required>
         <div class="form-footer">
@@ -22,7 +20,7 @@
         </div>
     </form>
     <!-- .login-form -->
-    <p class="text-sm space-top">Don’t have an account? <a href="#signup" ng-click="showSignUp = true" class="toggle-section">Signup here</a> or with social account:</p>
+    <p class="text-sm space-top">Don’t have an account? <a href="#signup" ng-click="setSignUp(true)" class="toggle-section">Signup here</a> or with social account:</p>
     <a href="#" class="social-signup-btn ssb-facebook">
         <i class="socicon-facebook"></i>
         <span>Signup with Facebook</span>

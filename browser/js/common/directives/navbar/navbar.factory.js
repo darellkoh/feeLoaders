@@ -1,13 +1,15 @@
 app.factory('NavFactory', function(AuthService, $http){
   var signup = false;
+  var login = true;
   var loggedIn = false;
 
   return {
-
-    setLoggedIn: function(){
-      loggedIn = !loggedIn;
+    setLoggedIn: function(value){
+      console.log("SETTING THIS!!!")
+      signup = false;
+      login = !value;
+      loggedIn = value;
     },
-
 
     isLoggedIn : function(){
      return AuthService.isAuthenticated()
@@ -22,15 +24,27 @@ app.factory('NavFactory', function(AuthService, $http){
 
     },
 
-     getSignup : function(){
+     getSignUp : function(){
       return signup;
      },
 
-     setSignup : function(){
-        console.log('got into setSignup')
-        signup = true;
-      }
+     setSignUp : function(value){
+        signup = value;
+        login = !value;
+      },
 
+     getLogin : function(){
+      return login;
+     },
+
+     setLogin : function(value){
+        login = value;
+        signup = !value;
+      },
+
+     getLoggedIn : function(){
+      return loggedIn;
+     }
   }
 
 })

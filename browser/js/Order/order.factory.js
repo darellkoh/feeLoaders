@@ -55,11 +55,17 @@ app.service('OrderFactory', function($http){
       product.qty++;
       self.sendCartToSession(order);
     }
-     this.decreaseQty = function(product){
-      if(product.qty){
+    this.decreaseQty = function(product){
+      if(product.qty > 0){
         product.qty--;
         self.sendCartToSession(order);
       }
+      if(product.qty === 0){
+        delete product.qty;
+        self.removeFromCart(product);
+        self.sendCartToSession(order);
+      }
+
     }
     this.getCart =  function(){
       return order;

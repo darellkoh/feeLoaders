@@ -2,17 +2,26 @@
 <!--         <div class="toolbar-section" id="signup"> -->
           <h3 class="toolbar-title space-bottom">Sign up, it's free</h3>
           <div class="inner">
-            <form method="post" class="login-form">
-              <input type="email" class="form-control" placeholder="E-mail" required>
-              <input type="password" class="form-control" placeholder="Password" required>
-              <input type="password" class="form-control" placeholder="Repeat password" required>
-              <div class="form-footer">
-                <div class="rememberme"></div>
-                <div class="form-submit">
-                  <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Sign up</button>
+            <form method="post" class="login-form" name="signupForm" ng-submit="signupForm.$valid && sendSignUp(signUp)">
+
+            <alert type="danger" ng-show="error">
+            {{ error }}
+            </alert>
+                <input ng-model="signUp.email" type="text" class="form-control" placeholder="email" required>
+                <input type="password" ng-model="signUp.password" class="form-control" placeholder="Password" required>
+                <div class="form-footer">
+                    <div class="rememberme">
+                        <label class="checkbox">
+                            <input type="checkbox" checked> Remember me
+                        </label>
+                    </div>
+
+                    <div class="form-submit">
+
+                        <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Sign UP!</button>
+                    </div>
                 </div>
-              </div>
-            </form><!-- .login-form -->
-            <p class="text-sm space-top">Already have an account? Than <a href="#account" class="toggle-section">Login here</a></p>
+            </form>
+            <p class="text-sm space-top">Already have an account? Than <a href="#account" ng-click="setSignUp(false)"  class="toggle-section">Login here</a></p>
           </div><!-- .inner -->
 <!--         </div>.toolbar-section#account -->
