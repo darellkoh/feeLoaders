@@ -9,7 +9,7 @@ app.directive('userLoggedIn', function(NavFactory, AuthService) {
         $scope.logOut = function() {
             $scope.error = null;
             AuthService.logout().then(function() {
-                NavFactory.setLoggedIn()
+                NavFactory.setLoggedIn(false)
             }).catch(function() {
                 $scope.error = 'Invalid login credentials.';
             });

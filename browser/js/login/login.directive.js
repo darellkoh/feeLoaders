@@ -13,12 +13,12 @@ app.directive('login', function(NavFactory, AuthService, $state){
       $scope.error = null;
 
       AuthService.login(loginInfo).then(function () {
-           // $state.go('home');
+            NavFactory.setLoggedIn(true);
         }).catch(function () {
             $scope.error = 'Invalid login credentials.';
       });
 
-      $scope.setSignup = NavFactory.setSignup;
+      $scope.setSignUp = NavFactory.setSignUp;
 
       }
 
