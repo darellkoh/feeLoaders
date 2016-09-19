@@ -97,6 +97,28 @@ var seedProducts = function () {
     return Promise.all(creatingProducts);
 };
 
+var seedOrders = function() {
+    var orders = [
+        { complete: false },
+        { complete: true  },
+        { complete: false },
+        { complete: true  },
+    ];
+
+    var creatingOrders = orders.map(function(orderObj){
+        return Order.create(orderObj)
+        .then(function(order){
+            return order.setUser(1);
+        })
+        .then(function(order){
+            return order;
+        })
+        .catch(console.error)
+    })
+
+    return Promise.all(creatingOrders);
+}
+
 db.sync({ force: true })
     .then(function () {
         return seedUsers();
@@ -121,6 +143,9 @@ db.sync({ force: true })
     })
     .then(function(){
         return seedProducts();
+    })
+    .then(function(){
+        return seedOrders();
     })
     .then(function () {
         console.log(chalk.green('Seed products successful!'));
