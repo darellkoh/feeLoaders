@@ -37,8 +37,12 @@ app.directive('order', function(OrderFactory, ProductsFactory){
     `,
     controller: function($scope){
       $scope.cart = OrderFactory.getCart();
+      console.log("$scope.cart", $scope.cart)
       $scope.subTotal = OrderFactory.getSubTotal;
-
+    },
+    link: function(scope){
+      scope.cart = OrderFactory.getCart();
+      console.log("scope.cart", scope.cart)
     }
   }
 })

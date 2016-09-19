@@ -62,6 +62,14 @@ module.exports = function (app, db) {
         }
     });
 
+    app.get('/sessionCart', function (req, res) {
+        if (req.session.cart) {
+            res.send(req.session.cart);
+        } else {
+            res.status(401).send('No Session Cart.');
+        }
+    });
+
     // Simple /logout route.
     app.get('/logout', function (req, res) {
         req.logout();
