@@ -16,7 +16,7 @@
                         <div class="shop-bar">
                             <div class="column">
                                 <p class="text-sm space-bottom-none">
-                                    <span class="text-gray">Showing</span> 1-16 items
+                                    <span class="text-gray">Showing</span> {{ filteredProducts.length ? filteredProducts.length : products.length }} items
                                 </p>
                             </div>
                             <div class="column">
@@ -37,9 +37,9 @@
                             <!-- NG-REPEAT OVER EACH CATEGORY TO DISPLAY EACH TAB -->
                             <li ng-repeat='category in categories' ng-class=isActive(category.id) style='cursor:pointer'><a ng-click=setSelected(category.id)>{{ category.name | filter: upperCase }} </a> <sup>{{categoryCount(category.id)}}</sup></li>
                         </ul>
-                        <!-- .nav-filters -->
+
                     </div>
-                    <!-- .column -->
+
                 </div>
         </section>
         </div>
@@ -49,7 +49,7 @@
             <div class="row">
                 <!-- Item -->
                 <!-- PUT PRODUCTS HERE  -->
-                <product ng-repeat="product in products | categoryFilter: selectedCategoryId | filter: {name: productSearch}" product='product'></product>
+                <product ng-repeat="product in (filteredProducts = (filteredCategories | filter: {name: productSearch }))" product='product'></product>
             </div>
         </section>
 

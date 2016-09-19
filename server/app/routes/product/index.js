@@ -1,12 +1,14 @@
 var router = require('express').Router(); // eslint-disable-line new-cap
 var db = require('../../../db/index.js');
 var Product = db.model('product');
+var Category = db.model('category');
 module.exports = router;
 
 
 // GET all
 router.get('/', function( req, res, next){
-  Product.findAll({})
+  Product.findAll({ include: [Category]
+  })
   .then(function(products){
     res.status(200).send(products);
   })
@@ -16,7 +18,7 @@ router.get('/', function( req, res, next){
 
 // POST one
 router.post('/', function(req, res, next){
-  
+
   Product.create(req.body)
   .then(function(createdProduct){
     res.status(201).send(createdProduct);
