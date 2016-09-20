@@ -4,6 +4,7 @@ module.exports = orders;
 var Order = require('../../../db/models/order.js');
 var OrderItem = require('../../../db/models/orderItem.js');
 var Product = require('../../../db/models/products.js');
+var Promise = require('bluebird');
 
 ///////////////////////////////////////////
 //  Route: api/orders
@@ -29,17 +30,33 @@ orders.get('/', function(req, res, next) {
 //POST - create new order
 orders.post('/', function(req, res, next) {
     if (req.query.sessionSave) {
-      req.session.cart = req.body
-      res.status(201).send(req.body);
+        req.session.cart = req.body
+        res.status(201).send(req.body);
+    } else {
+        Order.create({ complete: true })
+            .then(function(orderCreated) {
+                return orderCreated.setUser(req.user.id);
+            })
+            .then(function(order) {
+                var creatingOrders = [];
+                console.log('order req body', req.body);
+                req.body.forEach(function(orderItem) {
+                    creatingOrders.push(OrderItem.create({
+                        qtyPurchased: orderItem.qty,
+                        productCost: orderItem.price,
+                        productId: orderItem.id,
+                        userId: req.user.id,
+                        orderId: order.id
+                    }));
+                })
+                return Promise.all(creatingOrders);
+            })
+            .then(function(createdOrders) {
+              req.session.cart = null;
+                res.status(201).send(createdOrders);
+            })
+            .catch(next);
     }
-    else {
-      Order.create(req.body)
-          .then(function(orderCreated) {
-              res.status(201).send(orderCreated);
-          })
-          .catch(next);
-    }
-
 });
 
 //Order Params
@@ -104,12 +121,12 @@ orders.put('/:orderId', function(req, res, next) {
 
 //DELETE
 orders.delete('/:orderId/orderItems/:orderItemsId', function(req, res, next) {
-  var orderItem = req.params.orderItemsId;
+    var orderItem = req.params.orderItemsId;
     OrderItem.destroy({
-      where: {
-        id: orderItem
-      }
-      })
+            where: {
+                id: orderItem
+            }
+        })
         .then(function() {
             res.sendStatus(204);
         })
@@ -118,26 +135,26 @@ orders.delete('/:orderId/orderItems/:orderItemsId', function(req, res, next) {
 
 
 //PUT Updates one order item
-orders.put('/:orderId/orderItems/:orderItemsId', function(req, res, next){
-  var orderItem = req.params.orderItemsId;
-  OrderItem.findById(orderItem)
-  .then(function(item){
-   return item.update(req.body)
-  })
-  .then(function(updatedItem){
-    res.status(200).send(updatedItem);
-  })
-  .catch(next);
+orders.put('/:orderId/orderItems/:orderItemsId', function(req, res, next) {
+    var orderItem = req.params.orderItemsId;
+    OrderItem.findById(orderItem)
+        .then(function(item) {
+            return item.update(req.body)
+        })
+        .then(function(updatedItem) {
+            res.status(200).send(updatedItem);
+        })
+        .catch(next);
 })
 
 
 
 //GET one order item
-orders.get('/:orderId/orderItems/:orderItemsId', function(req, res, next){
-  var orderItem = req.params.orderItemsId;
-  OrderItem.findById(orderItem)
-  .then(function(item){
-      res.send(item);
-   })
-  .catch(next);
+orders.get('/:orderId/orderItems/:orderItemsId', function(req, res, next) {
+    var orderItem = req.params.orderItemsId;
+    OrderItem.findById(orderItem)
+        .then(function(item) {
+            res.send(item);
+        })
+        .catch(next);
 })
