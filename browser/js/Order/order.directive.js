@@ -16,7 +16,7 @@ app.directive('order', function(OrderFactory, ProductsFactory){
      <div class="col-md-1"><h6>remove</h6></div>
      </div>
 
-      <order-item ng-repeat="product in cart track by $index" product="product"></order-item>
+      <order-item ng-repeat="product in cart() track by $index" product="product"></order-item>
       <!-- Subtotal -->
       <br>
       <div class="cart-subtotal space-bottom">
@@ -36,12 +36,11 @@ app.directive('order', function(OrderFactory, ProductsFactory){
       </div>
     `,
     controller: function($scope){
-      $scope.cart = OrderFactory.getCart();
       console.log("$scope.cart", $scope.cart)
       $scope.subTotal = OrderFactory.getSubTotal;
     },
     link: function(scope){
-      scope.cart = OrderFactory.getCart();
+      scope.cart = OrderFactory.getCart;
       console.log("scope.cart", scope.cart)
     }
   }
