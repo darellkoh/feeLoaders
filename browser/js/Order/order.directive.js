@@ -16,7 +16,7 @@ app.directive('order', function(OrderFactory, ProductsFactory){
      <div class="col-md-1"><h6>remove</h6></div>
      </div>
 
-      <order-item ng-repeat="product in cart track by $index" product="product"></order-item>
+      <order-item ng-repeat="product in cart() track by $index" product="product"></order-item>
       <!-- Subtotal -->
       <br>
       <div class="cart-subtotal space-bottom">
@@ -32,17 +32,17 @@ app.directive('order', function(OrderFactory, ProductsFactory){
       <!-- Buttons -->
       <div class="text-right">
         <a href="#" class="btn btn-default btn-ghost close-dropdown">Continue Shopping</a>
-        <a href="#checkout" class="btn btn-primary waves-effect waves-light toggle-section">Proceed to Checkout</a>
+        <button ng-click="submitOrder()" class="btn btn-primary waves-effect waves-light toggle-section">Proceed to Checkout</button>
       </div>
     `,
     controller: function($scope){
-      $scope.cart = OrderFactory.getCart();
       console.log("$scope.cart", $scope.cart)
       $scope.subTotal = OrderFactory.getSubTotal;
     },
     link: function(scope){
-      scope.cart = OrderFactory.getCart();
+      scope.cart = OrderFactory.getCart;
       console.log("scope.cart", scope.cart)
+      scope.submitOrder = OrderFactory.submitOrder;
     }
   }
 })

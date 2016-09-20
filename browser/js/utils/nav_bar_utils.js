@@ -43,13 +43,13 @@ app.directive('navBarUtil', function(OrderFactory){
 
             var toggleSection = $('.toggle-section');
 
-            toggleSection.on('click', function(e) {
-                console.log("HERE toggleSection")
-                var currentValue = $(this).attr('href');
-                toolbarSection.removeClass('current');
-                $(currentValue).addClass('current');
-                e.preventDefault();
-            });
+            // toggleSection.on('click', function(e) {
+            //     console.log("HERE toggleSection")
+            //     var currentValue = $(this).attr('href');
+            //     toolbarSection.removeClass('current');
+            //     $(currentValue).addClass('current');
+            //     e.preventDefault();
+            // });
 
             $('#main').on('click', function(e) {
                 console.log(e.target.tagName == "EM");

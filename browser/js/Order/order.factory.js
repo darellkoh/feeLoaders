@@ -27,14 +27,14 @@ app.service('OrderFactory', function($http){
       order.push(product);
       self.sendCartToSession(order);
     }
-    this.removeFromCart= function(product){
+    this.removeFromCart = function(product){
       var index = order.map(function(item){
         return item.id
       }).indexOf(product.id);
       order.splice(index, 1);
       self.sendCartToSession(order);
     }
-    this.totalQuantity= function(){
+    this.totalQuantity = function(){
       var subTotal = order.reduce(function(prev, cur){
         var subTotalLine = cur.qty;
         prev += subTotalLine;
@@ -50,7 +50,7 @@ app.service('OrderFactory', function($http){
       },0)
       return subTotal;
     }
-    this.increaseQty= function(product){
+    this.increaseQty = function(product){
       console.log("THIS", this)
       product.qty++;
       self.sendCartToSession(order);
@@ -85,6 +85,20 @@ app.service('OrderFactory', function($http){
         value = !showCart;
       }else{
         showCart = value;
+      }
+    }
+    this.submitOrder = function(){
+      console.log('submitting order');
+      if(order.length === 0){
+        return;
+      } else {
+          $http.post('/api/orders', order)
+          .then(function(response){
+            console.log('orderrrrr', order);
+            if(response.status === 201){
+              order = [];
+            }
+          })
       }
     }
 })
