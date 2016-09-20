@@ -2,8 +2,12 @@ app.factory('NavFactory', function(AuthService, $http){
   var signup = false;
   var login = true;
   var loggedIn = false;
+  var setUser = null;
 
   return {
+    setUser: function(user){
+      setUser = user;
+    },
     setLoggedIn: function(value){
       console.log("SETTING THIS!!!")
       signup = false;

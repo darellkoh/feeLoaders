@@ -19,9 +19,13 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 });
 
 // This app.run is for controlling access to specific states.
-app.run(function ($rootScope, AuthService, $state, OrderFactory) {
+app.run(function ($rootScope, AuthService, $state, OrderFactory, NavFactory) {
 
     OrderFactory.getSessionCart();
+    AuthService.getLoggedInUser()
+    .then(function(user){
+        NavFactory.setUser(user);
+    })
 
     // The given state requires an authenticated user.
     var destinationStateRequiresAuth = function (state) {

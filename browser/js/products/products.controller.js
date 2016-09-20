@@ -80,21 +80,6 @@ app.controller('singleProductCtrl', function($scope, product, categories, OrderF
     console.log($scope.leaveReview)
   }
 
-  $scope.reviewArray = [
-  {
-    title: "title for you",
-    rating: 4,
-    content: "this is great!",
-    user: "Milad Nazeri"
-  },
-  {
-    title: "title title title",
-    rating: 2,
-    content: "this is fucking great!",
-    user: "Joe"
-  },
-  ]
-
   $scope.addToCart = function(product){
     var showCart = OrderFactory.getShowCart();
     console.log('SHOW CART', showCart);
