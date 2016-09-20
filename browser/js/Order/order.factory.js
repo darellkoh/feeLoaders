@@ -87,7 +87,7 @@ app.service('OrderFactory', function($http){
         showCart = value;
       }
     }
-    this.submitOrder = function(){
+    this.submitOrder = function(cb){
       console.log('submitting order');
       if(order.length === 0){
         return;
@@ -97,6 +97,7 @@ app.service('OrderFactory', function($http){
             console.log('orderrrrr', order);
             if(response.status === 201){
               order = [];
+              cb();
             }
           })
       }

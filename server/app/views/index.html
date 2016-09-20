@@ -19,11 +19,15 @@
     <script src="/main.js"></script>
 </head>
 <body ng-app="FullstackGeneratedApp">
-
-    <navbar nav-bar-util></navbar>
+    <!-- <img style="width:500px; height:500px" id="botImageEnd" src="chatbot/chat-01.png" /> -->
+    <button id="floatButton">Click me to ask for help!</button>
+    <div id="money"></div>
+    <chat-bot id="chat-bot"></chat-bot>
+    <navbar style="z-index: 2; position: absolute" nav-bar-util></navbar>
     <!-- <div id="main" ui-view> -->
     <div id='main'>
         <ui-view></ui-view>
+
     </div>
 </body>
 </html>
