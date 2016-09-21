@@ -18,6 +18,7 @@ router.get('/', function(req, res, next) {
 
 // POST a review
 router.post('/', function(req, res, next) {
+    req.body.user.id = req.user.id;
     Review.create(req.body)
         .then(function(review) {
             res.status(201).send(review);

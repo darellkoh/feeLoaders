@@ -58,9 +58,9 @@
       <!-- Nav Tabs -->
      <h2>Reviews</h2><!-- .nav-tabs -->
       <!-- Tab panes -->
-        <reviews ng-repeat="review in reviewArray" review="review"></reviews>
+        <reviews ng-repeat="review in reviews" review="review" productId="{{product.id}}"></reviews>
           <!-- Review -->
-          <!-- Reviview Form -->
+          <!-- Review Form -->
           <h4 class="padding-top">Leave a review</h4>
           <review-leave leave-review="leaveReview" submit-review="submitReview()"></review-leave>
     </section><!-- .container -->

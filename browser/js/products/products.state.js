@@ -37,7 +37,10 @@ app.config(function($stateProvider){
 			cart: function(OrderFactory){
 				console.log('hittttitt')
 				OrderFactory.setShowCart(false);
-			}
+			},
+      reviews: function(ReviewsFactory){
+        return ReviewsFactory.getOne($stateParams.id);
+      }
 		}
 	});
 

@@ -3,7 +3,8 @@ app.directive("reviewLeave", function(){
     restrict: "E",
     scope: {
 
-      submitReview: "&"
+      submitReview: "&",
+      productId: "@"
     },
     template: `
     <form name="review" class="row padding-top">
@@ -20,11 +21,11 @@ app.directive("reviewLeave", function(){
       <div class="col-sm-4">
         <div class="form-element form-select">
           <select class="form-control" ng-model="leaveReview.rating">
-            <option>5 stars</option>
-            <option>4 stars</option>
-            <option>3 stars</option>
-            <option>2 stars</option>
-            <option>1 star</option>
+            <option value="5">5 stars</option>
+            <option value="4">4 stars</option>
+            <option value="3">3 stars</option>
+            <option value="2">2 stars</option>
+            <option value="1">1 star</option>
           </select>
         </div>
       </div>
@@ -42,6 +43,7 @@ app.directive("reviewLeave", function(){
     </form>
     `,
     link: function( s, e, a ){
+      s.leaveReview.productId = +productId;
     }
   }
 });
