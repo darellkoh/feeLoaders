@@ -16,10 +16,17 @@ app.factory('ReviewsFactory', function($http, $log){
             .then(function(response){
               return response.data;
             })
-            .catch($log)
+            .catch(function(err){
+              if (err){
+                 return [{}];
+              }
+
+            })
     }
 
     services.postOne = function(review){
+
+              console.log("REVIEW FOR POST ONE", review)
       return $http.post('/api/reviews/', review )
             .then(function(response){
               return response.data;

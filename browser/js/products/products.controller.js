@@ -63,11 +63,14 @@ app.controller('ProductsCtrl', function($scope, $filter, $stateParams, products,
 });
 
 
-app.controller('singleProductCtrl', function($scope, product, categories, OrderFactory, ReviewsFactory, reviews){
+app.controller('singleProductCtrl', function($scope, categories, OrderFactory, reviews, product, ReviewsFactory){
 
   $scope.product = product;
-  $scope.products = products;
+  console.log("PRODUCT",$scope.product);
+
+
   $scope.reviews = reviews;
+  console.log("REVIEWS",$scope.reviews);
 
   $scope.getCategoryStr = function(categoryId){
   	return categories[categoryId - 1].name;
@@ -86,6 +89,7 @@ app.controller('singleProductCtrl', function($scope, product, categories, OrderF
       return ReviewsFactory.getOne($scope.product.id)
     })
     .then(function(reviews){
+      console.log("here with reviews after submit")
       $scope.reviews = reviews
     })
 

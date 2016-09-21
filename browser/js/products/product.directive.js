@@ -8,12 +8,13 @@ app.directive('product', function(){
 			sale: '='
 		},
 		template: `
-			<div class="col-lg-3 col-md-4 col-sm-6">
+			<div class="col-lg-4 col-md-4 col-sm-6" >
 			  <div class="shop-item">
+
 			    <div class="shop-thumbnail">
 			      <!-- <span class="shop-label text-danger">Sale</span> -->
-			      <a ui-sref='singleProduct({id: product.id})' class="item-link"></a>
-			      <img src="{{product.photo}}" alt="Shop item">
+            <a ui-sref='singleProduct({id: product.id})' class="item-link"></a>
+			      <img src="{{product.photo}}" alt="Shop item"  style="min-width:150px;min-height:150px">
 			      <div class="shop-item-tools">
 			        <a href="#" class="add-to-whishlist" data-toggle="tooltip" data-placement="top" title="Wishlist">
 			          <i class="material-icons favorite_border"></i>

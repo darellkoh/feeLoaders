@@ -5,22 +5,13 @@ app.directive('chatBot', function(){
     <!-- -->
     <div>
         <h1 class="text-center" style="background-color: skyblue" id="botText">{{botText[selectArray]}}</h1>
-        <img style="width:350px; height:350px" id="botImage" src="chatbot/chat-0{{selectArray+1}}.png" />
+        <img style="width:600px; height:600px" id="botImage" src="chatbot/chat-0{{selectArray+1}}.png" />
         <button style="padding:20px; margin:30px" id="botTextButton">Cilck me for help</button>
-        <h1 id="botText">{{botText[selectArray]}}</h1>
-        <img id="botImage" src="chatbot/chat-0{{selectArray+1}}.png" />
-        <button id="botTextButton">Cilck me for help</button>
     <div>
     `,
     controller: function($scope){
-      $scope.$watch('botText', function (newValue, oldValue) {
-        console.log(newValue)
-        console.log(oldValue)
-
-      });
       $scope.selectArray = 0;
       $scope.getSelectArray = function(){
-        console.log("HERE!!!")
         return s.selectArray;
       }
       $scope.botText = ["Hi! How can I help you today", "Are you sure you don't want any help?", "Seriously if there is anything you need just hit the button", "I mean really I can do whatever for you, I'm like friggen google over here", "Ooooooooh I forgot I got this thing! Hey good luck with that!"];
@@ -31,7 +22,7 @@ app.directive('chatBot', function(){
              $("#chat-bot").css({
               "visibility":"visible"
              })
-             $("#chat-bot").animate({ left: 0 + 'px', top: 0 + 'px' });
+             $("#chat-bot").animate({ left: 350 + 'px', top: 150 + 'px' });
              $(this).css({
               "visibility":"hidden"
              })
@@ -43,10 +34,10 @@ app.directive('chatBot', function(){
               angular.element('#botText').text(s.botText[s.selectArray]);
               angular.element('#botTextButton').text(s.buttonText[s.selectArray]);
               angular.element('#botImage').attr('src',`chatbot/chat-0${s.selectArray+1}.png` )
-              var dWidth = angular.element(document).width() / 2.4, // 100 = image width
-                  dHeight = angular.element(document).height() / 2.4, // 100 = image height
-                  nextX = Math.floor(Math.random() * dWidth),
-                  nextY = Math.floor(Math.random() * dHeight);
+              var dWidth = angular.element(document).width() / 10, // 100 = image width
+                  dHeight = angular.element(document).height() / 30, // 100 = image height
+                  nextX = Math.floor(Math.random() * dWidth + 100),
+                  nextY = Math.floor(Math.random() * dHeight + 50);
               $("#chat-bot").animate({ left: nextX + 'px', top: nextY + 'px' });
               $("#botTextButton").on('click', function(){
                 s.selectArray++;
@@ -58,7 +49,7 @@ app.directive('chatBot', function(){
                     setTimeout(function(){
 
                       $("#chat-bot").animate({ left: nextX + 2500 + 'px', top: nextY + 2500 + 'px' });
-                    },1500)
+                    },2500)
                 }
 
 

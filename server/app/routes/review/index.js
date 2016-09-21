@@ -18,10 +18,12 @@ router.get('/', function(req, res, next) {
 
 // POST a review
 router.post('/', function(req, res, next) {
-    req.body.user.id = req.user.id;
+    console.log("req.user", req.user)
+    req.body.userId = req.user.id;
     Review.create(req.body)
         .then(function(review) {
-            res.status(201).send(review);
+            console.log("SENDING BACK REVIEw", review)
+            res.status(201).json(review);
         })
         .catch(next);
 });
@@ -29,7 +31,11 @@ router.post('/', function(req, res, next) {
 
 // Review Param
 router.param('reviewId', function(req, res, next, id) {
-    Review.findById(id)
+    Review.find({
+        where: {
+            productId: id
+        }
+    })
         .then(function(review) {
             if (!review) {
                 var err = Error('Review not found.');
@@ -38,7 +44,6 @@ router.param('reviewId', function(req, res, next, id) {
             }
             req.review = review;
             next();
-            return null;
         })
         .catch(next);
 });
