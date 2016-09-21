@@ -7,6 +7,9 @@ app.directive('chatBot', function(){
         <h1 class="text-center" style="background-color: skyblue" id="botText">{{botText[selectArray]}}</h1>
         <img style="width:350px; height:350px" id="botImage" src="chatbot/chat-0{{selectArray+1}}.png" />
         <button style="padding:20px; margin:30px" id="botTextButton">Cilck me for help</button>
+        <h1 id="botText">{{botText[selectArray]}}</h1>
+        <img id="botImage" src="chatbot/chat-0{{selectArray+1}}.png" />
+        <button id="botTextButton">Cilck me for help</button>
     <div>
     `,
     controller: function($scope){
@@ -60,6 +63,7 @@ app.directive('chatBot', function(){
 
 
               })
+
           });
 
       // height: ($("#chat-bot").css("height") + 50)
