@@ -64,14 +64,16 @@ app.directive('navBarUtil', function(OrderFactory){
             });
             $('#main').on('click', function(e) {
                 console.log(e.target.tagName == "EM");
+                  closeToolBox();
                if(e.target.tagName === "EM"){
                 // if ($(e.target).is('.active')) {
                 //     closeToolBox();
                 //     toolbarDropdown.removeClass('open');
                 // } else {
+                   $('#cart-toolbar-toggle').addClass('active');
                     $('#toolbar-dropdown-id').addClass('open');
                     // closeToolBox();
-                    $('#cart-toolbar-toggle').addClass('active');
+
                      $('#cart-toolbar-section').addClass('current');
                 // }
                 e.preventDefault();

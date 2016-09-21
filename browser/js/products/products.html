@@ -29,13 +29,14 @@
                             </div>
                         </div>
                         <div class="row">
-
+                        CatID{{selectedCategoryId}}
                         <!-- CATEGORIES -->
                         <ul class="nav-filters">
                             <!-- ALL CATEGORY TAB -->
                             <li ng-class=isActive(-1) style='cursor:pointer'><a ng-click=setSelected(-1)>All</a> <sup>{{products.length}}</sup></li>
                             <!-- NG-REPEAT OVER EACH CATEGORY TO DISPLAY EACH TAB -->
-                            <li ng-repeat='category in categories' ng-class=isActive(category.id) style='cursor:pointer'><a ng-click=setSelected(category.id)>{{ category.name | filter: upperCase }} </a> <sup>{{categoryCount(category.id)}}</sup></li>
+
+                            <li ng-repeat='category in categories' ng-class='isActive(category.id)'><a style='cursor:pointer' ng-click='setSelected(category.id)'>{{ category.name | filter: upperCase }} </a> <sup>{{categoryCount(category.id)}}</sup></li>
                         </ul>
 
                     </div>
