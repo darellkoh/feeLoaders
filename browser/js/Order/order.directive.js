@@ -56,6 +56,7 @@ app.directive('order', function(OrderFactory, ProductsFactory){
         })
         setTimeout(function(){
           angular.element("#botImageEnd").remove();
+          angular.element("#money").remove();
         },6000)
       }
     }

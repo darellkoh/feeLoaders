@@ -119,7 +119,7 @@ var seedOrders = function() {
     return Promise.all(creatingOrders);
 }
 
-db.sync({ force: true })
+db.sync({})
     .then(function () {
         return seedUsers();
     })
