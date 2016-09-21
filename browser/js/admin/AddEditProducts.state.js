@@ -7,6 +7,12 @@ app.config(function($stateProvider){
     resolve: {
     products: function(ProductsFactory){
         return ProductsFactory.getAll();
+    },
+    categories: function(categoryFactory){
+      return categoryFactory.getAll()
+    },
+    tags: function(tagsFactory){
+      return tagsFactory.getAll()
     }
   }
   })
@@ -21,6 +27,12 @@ app.config(function($stateProvider){
     resolve: {
       products: function(ProductsFactory){
         return ProductsFactory.getAll();
+      },
+      categories: function(categoryFactory){
+        return categoryFactory.getAll()
+      },
+      tags: function(tagsFactory){
+        return tagsFactory.getAll()
       }
     }
   })

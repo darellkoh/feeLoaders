@@ -6,7 +6,7 @@
 <div class="row">
 
 
-  <div class="col-md-3 text-center" >
+  <div class="col-md-2 text-center" >
     <h2> Product Name </h2>
   </div>
   <div class="col-md-3 text-center" >
@@ -16,7 +16,16 @@
     <h2> Price </h2>
   </div>
   <div class="col-md-1 text-center" >
+    <h2> Categories </h2>
+  </div>
+  <div class="col-md-2 text-center" >
+    <h2> Tags </h2>
+  </div>
+  <div class="col-md-1 text-center" >
     <h2> In Stock </h2>
+  </div>
+  <div class="col-md-1 text-center" >
+    <h2> Image </h2>
   </div>
   <div class="col-md-1 text-center" >
     <h2> Image </h2>
@@ -26,10 +35,7 @@
 <div class="row">
   <!-- <div> -->
     <form>
-      <div class="col-md-1 text-center" >
-        <input ng-model='product.id'/>
-      </div>
-      <div class="col-md-3 text-center" >
+      <div class="col-md-2 text-center" >
         <input ng-model='product.name'></input>
       </div>
       <div class="col-md-3 text-center" >
@@ -39,7 +45,16 @@
        <input ng-model='product.price'> </input>
       </div>
       <div class="col-md-1 text-center" >
+       <input ng-model='product.category'> </input>
+      </div>
+      <div class="col-md-2 text-center" >
+       <input ng-model='product.tags'> </input>
+      </div>
+      <div class="col-md-1 text-center" >
            <input ng-model='product.qtyInStock'></input>
+      </div>
+      <div class="col-md-1 text-center" >
+           <input ng-model='product.photo'></input>
       </div>
        <div class="col-md-1 text-center" >
         <div ng-click="addNewProduct(product)" class="glyphicon glyphicon-floppy-disk"></div>

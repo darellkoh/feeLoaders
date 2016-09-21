@@ -5,7 +5,7 @@ app.directive('chatBot', function(){
     <!-- -->
     <div>
         <h1 class="text-center" style="background-color: skyblue" id="botText">{{botText[selectArray]}}</h1>
-        <img style="width:600px; height:600px" id="botImage" src="chatbot/chat-0{{selectArray+1}}.png" />
+        <img style="width:350px; height:350px" id="botImage" src="chatbot/chat-0{{selectArray+1}}.png" />
         <button style="padding:20px; margin:30px" id="botTextButton">Cilck me for help</button>
     <div>
     `,

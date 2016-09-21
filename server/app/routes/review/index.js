@@ -5,9 +5,16 @@ module.exports = router;
 
 var Review = require('../../../db/models/reviews');
 
+var ensureAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated() && req.user.isAdmin) {
+        next();
+    } else {
+        res.status(401).end();
+    }
+};
 
 // GET all reviews
-router.get('/', function(req, res, next) {
+router.get('/', ensureAuthenticated, function(req, res, next) {
     Review.findAll({})
         .then(function(reviews) {
             res.send(reviews)

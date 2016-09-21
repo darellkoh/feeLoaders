@@ -18,7 +18,7 @@ router.post('/', function(req, res, next) {
     User.create(req.body)
         .then(function(user) {
             res.status(201)
-            res.send(user)
+            res.send(user.sanitize())
         })
         .catch(next);
 });

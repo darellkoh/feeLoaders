@@ -1,6 +1,8 @@
-app.controller('AdminCtrl', function($scope, products, ProductsFactory, $state){
+app.controller('AdminCtrl', function($scope, products, ProductsFactory, tags, category, $state){
 
 $scope.products = products;
+$scope.tags = tags;
+$scope.categories = categories;
 
 $scope.toggleEdit = function(){
   if($scope.edit){
