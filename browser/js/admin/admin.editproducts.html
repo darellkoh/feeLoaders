@@ -1,0 +1,83 @@
+
+<br></br>
+<h1 class="text-center"> Edit Products </h1>
+
+
+<div class="row">
+
+ <div class="col-md-1 text-center" >
+    <h2> ID </h2>
+  </div>
+  <div class="col-md-3 text-center" >
+    <h2> Product Name </h2>
+  </div>
+  <div class="col-md-3 text-center" >
+    <h2> Description </h2>
+  </div>
+  <div class="col-md-1 text-center" >
+    <h2> Price </h2>
+  </div>
+  <div class="col-md-1 text-center" >
+    <h2> In Stock </h2>
+  </div>
+</div>
+
+<div ng-repeat="product in products" class="row">
+  <div ng-show="edit">
+    <form name="som">
+      <div class="col-md-1 text-center" >
+        <input ng-model='product.id'/>
+      </div>
+      <div class="col-md-3 text-center" >
+        <input ng-model='product.name'></input>
+      </div>
+      <div class="col-md-3 text-center" >
+        <input ng-model='product.description'></input>
+      </div>
+      <div class="col-md-1 text-center" >
+       <input ng-model='product.price'> </input>
+      </div>
+      <div class="col-md-1 text-center" >
+           <input ng-model='product.qtyInStock'></input>
+      </div>
+       <div class="col-md-1 text-center" >
+        <div ng-click="toggleEdit()" class="glyphicon glyphicon-pencil"></div>
+      </div>
+       <div class="col-md-1 text-center" >
+        <div ng-click="deleteProduct(product.id)" class="glyphicon glyphicon-remove"></div>
+      </div>
+       <div class="col-md-1 text-center" >
+        <div ng-click="save(product)" class="glyphicon glyphicon-floppy-disk"></div>
+      </div>
+    </form>
+  </div>
+
+  <div ng-show="!edit">
+    <form name="som">
+      <div class="col-md-1 text-center" >
+        <h3>{{product.id}}</h3>
+      </div>
+      <div class="col-md-3 text-center" >
+         <h3>{{product.name}}</h3>
+      </div>
+      <div class="col-md-3 text-center" >
+         <h3>{{product.description}}</h3>
+      </div>
+      <div class="col-md-1 text-center" >
+       <h3>{{product.price}}</h3>
+      </div>
+      <div class="col-md-1 text-center" >
+       <h3>{{product.qtyInStock}}</h3>
+      </div>
+       <div class="col-md-1 text-center" >
+        <div ng-click="toggleEdit()" class="glyphicon glyphicon-pencil"></div>
+      </div>
+       <div class="col-md-1 text-center" >
+        <div ng-click="deleteProduct(product.id)" class="glyphicon glyphicon-remove"></div>
+      </div>
+       <div class="col-md-1 text-center" >
+        <div ng-click="save(product)" class="glyphicon glyphicon-floppy-disk"></div>
+      </div>
+    </form>
+  </div>
+</div>

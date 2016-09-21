@@ -51,8 +51,11 @@ router.get('/:productId', function( req, res, next){
 
 // PUT - update one
 router.put('/:productId', function(req, res, next){
+  console.log('req product', req.product);
+  console.log('req body', req.body);
   req.product.update(req.body)
   .then(function(updatedProduct){
+    console.log('updatedproduct', updatedProduct);
     res.status(200).send(updatedProduct);
   })
   .catch(next);
