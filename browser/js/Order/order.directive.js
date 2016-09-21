@@ -34,12 +34,10 @@ app.directive('order', function(OrderFactory, ProductsFactory){
       </div>
     `,
     controller: function($scope){
-      console.log("$scope.cart", $scope.cart)
       $scope.subTotal = OrderFactory.getSubTotal;
     },
     link: function(scope){
       scope.cart = OrderFactory.getCart;
-      console.log("scope.cart", scope.cart)
       scope.submitOrder = OrderFactory.submitOrder;
       scope.makeItRain = makeItRain;
 

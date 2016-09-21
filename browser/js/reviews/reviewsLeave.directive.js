@@ -2,35 +2,31 @@ app.directive("reviewLeave", function(){
   return {
     restrict: "E",
     scope: {
-
-      submitReview: "&"
+      submitReview: "&",
+      product: "=",
+      leaveReview: "="
     },
     template: `
     <form name="review" class="row padding-top">
-      <div class="col-sm-4">
+      <div class="col-sm-8">
         <div class="form-element">
-          <input type="text" ng-model="leaveReview.name" class="form-control" placeholder="Name*" required>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-element">
-          <input type="email" ng-model="leaveReview.email" class="form-control" placeholder="Email*" required>
+          <input type="text" ng-model="leaveReview.title" class="form-control" placeholder="Title*" required>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="form-element form-select">
           <select class="form-control" ng-model="leaveReview.rating">
-            <option>5 stars</option>
-            <option>4 stars</option>
-            <option>3 stars</option>
-            <option>2 stars</option>
-            <option>1 star</option>
+            <option value="5">5 stars</option>
+            <option value="4">4 stars</option>
+            <option value="3">3 stars</option>
+            <option value="2">2 stars</option>
+            <option value="1">1 star</option>
           </select>
         </div>
       </div>
       <div class="col-sm-12">
         <div class="form-element">
-          <textarea rows="8" ng-model="leaveReview.review" class="form-control" placeholder="Review*" required></textarea>
+          <textarea rows="8" ng-model="leaveReview.content" class="form-control" placeholder="Review*" required></textarea>
         </div>
         <div class="row">
           <div class="col-lg-3 col-md-4 col-sm-6 col-lg-offset-9 col-md-offset-8 col-sm-offset-6">
@@ -42,6 +38,9 @@ app.directive("reviewLeave", function(){
     </form>
     `,
     link: function( s, e, a ){
+      console.log( "scope!!!" );
+      s.leaveReview = {};
+      s.leaveReview.productId = s.product.id;
     }
   }
 });

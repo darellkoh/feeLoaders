@@ -1,3 +1,6 @@
+    <div class="text-center">
+    <rando-greeting style="margin-left:auto;margin-right:auto"></rando-greeting>
+    </div>
 <!-- Product Gallery -->
     <section class="fw-section bg-gray padding-top-3x">
       <div class="container padding-top">
@@ -58,11 +61,15 @@
       <!-- Nav Tabs -->
      <h2>Reviews</h2><!-- .nav-tabs -->
       <!-- Tab panes -->
-        <reviews ng-repeat="review in reviewArray" review="review"></reviews>
+        <div ng-repeat="review in reviews">
+          <reviews review="review" product="product"></reviews>
+        </div>
+
           <!-- Review -->
-          <!-- Reviview Form -->
+          <!-- Review Form -->
           <h4 class="padding-top">Leave a review</h4>
-          <review-leave leave-review="leaveReview" submit-review="submitReview()"></review-leave>
+          <review-leave leave-review="leaveReview" product="product" submit-review="submitReview()"></review-leave>
+
     </section><!-- .container -->
 
     <!-- Related Products -->

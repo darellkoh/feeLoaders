@@ -119,7 +119,24 @@ var seedOrders = function() {
     return Promise.all(creatingOrders);
 }
 
-db.sync({})
+var seedReviews = function() {
+    var reviews = [
+        {
+            title: "milad",
+            userId: "2",
+            productId: "1",
+            content: "GREAT",
+            rating: "5"
+        }
+    ]
+    var creatingReviews = reviews.map(function (reviewObj) {
+            return Review.create(reviewObj);
+        });
+
+        return Promise.all(creatingReviews);
+}
+
+db.sync({force:true})
     .then(function () {
         return seedUsers();
     })
@@ -146,6 +163,9 @@ db.sync({})
     })
     .then(function(){
         return seedOrders();
+    })
+    .then(function(){
+        return seedReviews();
     })
     .then(function () {
         console.log(chalk.green('Seed products successful!'));

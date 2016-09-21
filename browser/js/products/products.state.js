@@ -13,12 +13,10 @@ app.config(function($stateProvider){
 				return categoryFactory.getAll();
 			},
 			cart: function(OrderFactory){
-				console.log('hittttitt')
 				OrderFactory.setShowCart(false);
 			}
 		}
 	});
-
 });
 
 app.config(function($stateProvider){
@@ -35,9 +33,11 @@ app.config(function($stateProvider){
 				return categoryFactory.getAll();
 			},
 			cart: function(OrderFactory){
-				console.log('hittttitt')
 				OrderFactory.setShowCart(false);
-			}
+			},
+      reviews: function(ReviewsFactory,$stateParams){
+        return ReviewsFactory.getOne($stateParams.id);
+      }
 		}
 	});
 
