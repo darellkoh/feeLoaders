@@ -45,7 +45,7 @@ app.directive('orderItem', function(OrderFactory){
 
 
       </div>
-    `,
+    `, //same about templateUrl -- KHGB
     controller: function($scope, OrderFactory){
       $scope.increaseQty = OrderFactory.increaseQty;
       $scope.decreaseQty = OrderFactory.decreaseQty;

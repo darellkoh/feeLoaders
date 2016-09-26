@@ -13,7 +13,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
     $scope.login = {};
     $scope.error = null;
 
-    $scope.sendLogin = function (loginInfo) {
+    $scope.sendLogin = function (loginInfo) { //what about login directive?? -- KHGB
 
         $scope.error = null;
 

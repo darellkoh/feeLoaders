@@ -1,4 +1,4 @@
-app.config(function ($stateProvider) {
+app.config(function ($stateProvider) { //rip out files that you don't use -- KHGB
 
     $stateProvider.state('membersOnly', {
         url: '/members-area',

@@ -4,7 +4,7 @@ app.config(function($stateProvider){
     url: '/add-product/',
     templateUrl: '/js/admin/admin.addproduct.html',
     controller: 'AdminCtrl',
-    resolve: {
+    resolve: { //resolves are great!! -- KHGB
     products: function(ProductsFactory){
         return ProductsFactory.getAll();
     },

@@ -8,7 +8,7 @@ app.factory('ProductsFactory', function($http, $log){
 					.then(function(response){
 						return response.data;
 					})
-					.catch($log)
+					.catch($log) //careful catching logs here in factory; need to throw again so you can handle it in the controller -- KHGB
 		}
 
 		services.deleteOne = function(id){

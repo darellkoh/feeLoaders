@@ -94,6 +94,8 @@
                 });
         };
 
+        //I would expect to see the signup function in this service -- KHGB
+
         this.logout = function() {
             return $http.get('/logout').then(function() {
                 Session.destroy();

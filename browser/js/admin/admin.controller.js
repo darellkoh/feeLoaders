@@ -20,7 +20,7 @@ $scope.addNewProduct = function(product){
 }
 
 $scope.save = function(product){
-  console.log('sssaaaveee', product);
+  console.log('sssaaaveee', product); //no logs in master -- KHGB
   return ProductsFactory.updateOne(product)
 }
 

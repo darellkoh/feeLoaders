@@ -1,4 +1,4 @@
-app.directive('chatBot', function(){
+app.directive('chatBot', function(){ //LOLLLLL; I loved this :) -- KHGB
   return {
     restrict: 'E',
     template: `

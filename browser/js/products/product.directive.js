@@ -40,9 +40,9 @@ app.directive('product', function(){
     $scope.addToCart = function(product){
     var showCart = OrderFactory.getShowCart();
     //if(showCart){
-    	OrderFactory.setShowCart(true);
+    	OrderFactory.setShowCart(true); 
       OrderFactory.addToCart(product);
-      OrderFactory.setShowCart(true);
+      OrderFactory.setShowCart(true); //twice? -- KHGB
       //OrderFactory.toggleShowCart();
   //   }else{
   //     OrderFactory.setShowCart(false);

@@ -23,7 +23,7 @@ app.directive('userLoggedIn', function(NavFactory, AuthService) {
 
                     <button ui-sref="UserEditAccount" type="submit" class="btn btn-primary btn-block waves-effect waves-light">Edit Account</button>
                     </div>
-                    `,
+                    `, //templateUrl -- KHGB
     controller: function($scope) {
         $scope.logOut = function() {
             $scope.error = null;

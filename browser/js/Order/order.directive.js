@@ -1,7 +1,7 @@
 app.directive('order', function(OrderFactory, ProductsFactory){
   return {
     restrict: 'E',
-    scope: {
+    scope: { //is there a point to isolating the scope here? Just for safety -- KHGB
     },
     template: `
      <div class="row">
@@ -32,12 +32,12 @@ app.directive('order', function(OrderFactory, ProductsFactory){
         <a href="#" class="btn btn-default btn-ghost close-dropdown">Continue Shopping</a>
         <button ng-click="submitOrder(makeItRain)" class="btn btn-primary waves-effect waves-light toggle-section">Proceed to Checkout</button>
       </div>
-    `,
-    controller: function($scope){
-      $scope.subTotal = OrderFactory.getSubTotal;
+    `, //sooooo much HTML in the JS file. Modularize this by making it a file and using templateUrl -- KHGB
+    controller: function($scope){ //why controller and link here? I'm not seeing the difference -- KHGB
+      $scope.subTotal = OrderFactory.getSubTotal; //same comment as scope.cart -- KHGB
     },
     link: function(scope){
-      scope.cart = OrderFactory.getCart;
+      scope.cart = OrderFactory.getCart; //scope.cart is a function -- think of naming; getCart is a verb for a function (invoking in the template); cart is a noun that should already be an array or object -- KHGB
       scope.submitOrder = OrderFactory.submitOrder;
       scope.makeItRain = makeItRain;
 
@@ -52,7 +52,7 @@ app.directive('order', function(OrderFactory, ProductsFactory){
           "animation": "snow 3s linear",
           "-webkit-animation": "snow 3s linear",
           "z-index": "980"
-        })
+        }) //consider using a ng-class or ng-style -- KHGB
         setTimeout(function(){
           // angular.element("#botImageEnd").hide();
           angular.element("#money").hide();

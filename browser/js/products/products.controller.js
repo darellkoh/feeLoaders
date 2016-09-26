@@ -15,7 +15,7 @@ app.filter( 'categoryFilter', function(){
 app.controller('ProductsCtrl', function($scope, $filter, $stateParams, products, categories, OrderFactory){
   angular.element("#money").css({
     "display": "none"
-  });
+  }); //ng-show, ng-hide or even ng-style or ng-class -- KHGB
 
 	$scope.products = products;
 
